@@ -1,7 +1,12 @@
 <?php 
 
+$nome =(int)$_GET["a"];
+$idade = (int)$_GET["b"];
+var_dump($nome,$idade);
 
-echo "primeiro <strong> projeto </strong> editado 456";
-echo "teste 2";
+$ip = $_SERVER["SERVER_ADDR"];
+
+var_dump($ip);
+
 
  ?>
