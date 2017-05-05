@@ -58,6 +58,8 @@ function somar($a , $b){
  
 }
 
+var_dump(ok);
+
 
 ?>
 

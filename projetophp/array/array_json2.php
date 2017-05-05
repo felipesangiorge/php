@@ -6,6 +6,8 @@ $data = json_decode($json,true);
 
 var_dump($data);
 
+//CONSTANT
+
 define("SERVIDOR","192.168.1.24");
 
 echo SERVIDOR;
