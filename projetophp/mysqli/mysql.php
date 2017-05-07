@@ -8,7 +8,7 @@ if($conn->connect_error){
 	exit;
 }
 
-$stmt = $conn -> prepare("INSERT INTO tb_usuarios(deslogin,dessenha) VALUES(?,?)");
+$stmt = $conn -> prepare("INSERT INTO tb_usuarios(des_nome,des_senha) VALUES(?,?)");
 
 $stmt -> bind_param("ss",$login,$pass);
 
@@ -16,4 +16,12 @@ $login = "felipe2";
 $pass = "213124";
 
 $stmt -> execute();
+
+$login = "felipe3";
+$pass = "21312213";
+
+$stmt -> execute();
+
+echo "dados inseridos!"
+
 ?>
