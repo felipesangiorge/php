@@ -8,10 +8,34 @@ require_once 'config.php';
 
 //echo json_encode($usuarios);
 
-$root = new Usuario();
+// Carraga um usuario __________________
 
-$root -> loadById(2);
+//$root = new Usuario();
 
-echo $root;
+//$root -> loadById(2);
+
+//echo $root;
+
+//echo "<br>";
+
+// Carraga Lista de  usuarios __________________
+//$list = Usuario::getList();
+
+//echo json_encode($list);
+
+//$user = Usuario::search("2");
+
+//echo "<br>";
+
+//echo json_encode($user);
+
+//echo "<br>";
+
+// Carragar Login/senha __________________
+$validarUsuario = new Usuario();
+
+$validarUsuario->validaUsuario("Felipe", "1234");
+
+echo $validarUsuario;
 
 ?>
