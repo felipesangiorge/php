@@ -32,10 +32,25 @@ require_once 'config.php';
 //echo "<br>";
 
 // Carragar Login/senha __________________
-$validarUsuario = new Usuario();
+//$validarUsuario = new Usuario();
 
-$validarUsuario->validaUsuario("Felipe", "1234");
+//$validarUsuario->validaUsuario("Felipe", "1234");
 
-echo $validarUsuario;
+//echo $validarUsuario;
+
+// Inserindo usuario __________________
+//$aluno = new Usuario("alunoteste","alunotseste");
+
+//$aluno->insert();
+
+//echo $aluno;
+
+$usuario = new Usuario();
+
+$usuario ->loadById(3);
+
+$usuario ->update("teste213Update", "tes1423pdates");
+
+echo $usuario;
 
 ?>
