@@ -45,11 +45,20 @@ require_once 'config.php';
 
 //echo $aluno;
 
+// Update usuario __________________
+//$usuario = new Usuario();
+
+//$usuario ->loadById(3);
+
+//$usuario ->update("teste213Update", "tes1423pdates");
+
+//echo $usuario;
+
 $usuario = new Usuario();
 
 $usuario ->loadById(3);
 
-$usuario ->update("teste213Update", "tes1423pdates");
+$usuario->delete();
 
 echo $usuario;
 
