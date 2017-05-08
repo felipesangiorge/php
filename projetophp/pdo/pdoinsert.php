@@ -29,10 +29,6 @@ $stmt = $conn -> prepare ("INSERT INTO tb_usuarios (deslogin,dessenha) VALUES (:
 $stmt -> bindParam(":DESNOME",$usuario);
 $stmt -> bindParam(":DESSENHA",$senha);
 
-
-
 $stmt -> execute();
-var_dump($usuario,$senha);
-
 
 ?>
