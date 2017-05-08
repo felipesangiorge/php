@@ -5,12 +5,14 @@
 	
 		<body>
 		
-				<input type="text" value="<?php echo $usuario ?> placeholder="login">
+			<form>
+				<input type="text" value="<?php $usuario ?>" placeholder="login">
 				
-				<input type="text" value="<?php echo $senha ?> placeholder="login">
+				<input type="text" value="<?php $senha ?>" placeholder="Senha">
 				
 				<button type="submit" class="button" name="myButton" value="foo">Entrar</button>
-		
+			</form>
+			
 		</body>
 	
 	
@@ -20,16 +22,17 @@
 
 require_once 'config.php';
 
-$stmt = $conn -> prepare ("INSERT INTO tb_usuarios (des_nome,des_senha) VALUES (:DESNOME,:DESSENHA)");
+$stmt = $conn -> prepare ("INSERT INTO tb_usuarios (deslogin,dessenha) VALUES (:DESNOME,:DESSENHA)");
 
-$login = $usuario;
-$password = $senha;
 
-$stmt -> bindParam(":DESNOME",$login);
-$stmt -> bindParam(":DESSENHA",$password);
+
+$stmt -> bindParam(":DESNOME",$usuario);
+$stmt -> bindParam(":DESSENHA",$senha);
+
+
 
 $stmt -> execute();
+var_dump($usuario,$senha);
 
-echo "Sucesso!";
 
 ?>
