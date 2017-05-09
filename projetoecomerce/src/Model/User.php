@@ -4,7 +4,7 @@ require_once ('src/DB/Sql.php');
 
 class User{
 	
-	const SESSION ="User";
+
 	
 	private $iduser;
 	private $idperson;
@@ -126,10 +126,17 @@ class User{
 			$user -> setDeslogin($login);
 			$user -> setDespassword($password);
 			
-			$_SESSION[User::SESSION] = $user -> getIduser();
+			$_SESSION['usuario'] = $user -> getDeslogin();
 			
 			
-			header("/admin");
+			echo $login;
+			
+			echo $user ->getIduser();
+			
+			echo $_SESSION['usuario'];
+			
+			
+			
 			
 		}else{
 			

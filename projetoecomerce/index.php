@@ -22,8 +22,11 @@ $app->get('/',function () {
 
 $app->get('/admin',function () {
 	
-		User::verifyLogin();
+		//User::verifyLogin();
+		
 		require_once("view/adminlte/index.php");
+		
+		
 	});
 
 $app->get('/login',function () {
