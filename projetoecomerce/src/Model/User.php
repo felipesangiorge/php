@@ -107,12 +107,15 @@ class User{
 		
 	}
 	
-	public static function verifyLogin(){
+	public static function verifyLogin($user,$session){
 	
-		if (!isset($_SESSION['usuario']) 
-				|| !$_SESSION['usuario'] == "root"){
+		if (isset($user) & $session == "1"){
 			
 			require_once ('view/adminLTE/index.php');
+			
+		}else{
+			
+			throw new \Exception("Usuario sem permissão");
 		}
 		
 	}
@@ -137,8 +140,8 @@ class User{
 			$user -> setDeslogin($login);
 			$user -> setDespassword($password);
 			
-			$_SESSION['usuario'] = $user -> getDeslogin();
-			$_SESSION['inadmin'] = $user -> getInadmin();
+			 $_SESSION['usuario'] = $user -> getDeslogin();
+			 $_SESSION['inadmin'] = $user -> getInadmin();
 	
 			
 		}else{
