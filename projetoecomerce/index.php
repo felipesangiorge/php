@@ -20,27 +20,31 @@ $app->get('/',function () {
        
     });
 
+
 $app->get('/admin',function () {
 	
-		//User::verifyLogin();
+	
+		User::verifyLogin();
 		
 		require_once("view/adminlte/index.php");
 		
 		
 	});
 
-$app->get('/login',function () {
+$app->get('/admin/login',function () {
 			require_once("view/adminlte/pages/login.php");
 		});
 
-$app->post('/login',function () {
+$app->post('/admin/login',function () {
 	
 
 		$user = new User();
 		
 		$user -> login($_POST["login"], $_POST["password"]);
 	
-	
+		//header("Location: /projetoecomerce/admin");
+		
+		//exit;
 	});
 
 $app->run();

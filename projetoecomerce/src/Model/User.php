@@ -25,13 +25,13 @@ class User{
 		
 	}
 	
-	public function getIderson(){
+	public function getIdperson(){
 		
 		return $this ->idperson;
 		
 	}
 	
-	public function setIderson($value){
+	public function setIdperson($value){
 		
 		$this -> idperson = $value;
 		
@@ -96,12 +96,21 @@ class User{
 		
 	}
 	
+	public function setData($data){
+		
+		$this->setIduser($data['iduser']);
+		$this->setIdperson($data['idperson']);
+		$this->setDeslogin($data['deslogin']);
+		$this->setDespassword($data['despassword']);
+		$this->setInadmin($data['inadmin']);
+		$this->setDtregister($data['dtregister']);
+		
+	}
+	
 	public static function verifyLogin(){
 	
-		if (!isset($_SESSION[User::SESSION]) 
-				|| !$_SESSION[User::SESSION] 
-				|| !(int)$_SESSION[User::SESSION]["iduser"]>0
-				|| (bool)$_SESSION[User::SESSION]["inadmin"] !== $inadmin){
+		if (!isset($_SESSION['usuario']) 
+				|| !$_SESSION['usuario'] == "root"){
 			
 			require_once ('view/adminLTE/index.php');
 		}
@@ -118,31 +127,26 @@ class User{
 				":PASSWORD"=>$password
 		));
 		
+		
 		if (count($results) > 0){
 			
-			
 			$user = new User();
+			
+			$user->setData($results[0]);
 			
 			$user -> setDeslogin($login);
 			$user -> setDespassword($password);
 			
 			$_SESSION['usuario'] = $user -> getDeslogin();
-			
-			
-			echo $login;
-			
-			echo $user ->getIduser();
-			
-			echo $_SESSION['usuario'];
-			
-			
-			
+			$_SESSION['inadmin'] = $user -> getInadmin();
+	
 			
 		}else{
 			
 			throw new Exception("Login ou senha Invalidos");
 		}
 		
+	
 	}
 			
 		
