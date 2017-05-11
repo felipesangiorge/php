@@ -785,6 +785,19 @@ $(document).ready(function(){
  		
  	});
 
+  $.ajax({
+        type:"POST",
+        url:"http://localhost/projetoecomerce/admin/cadastroprod",
+        data: teste_enc,
+        success: function(response, b, c){
+            alert("Entrou");
+        },
+        error: function(response,b,c){
+            alert("ERRO: "+response.status);
+
+            }
+    });
+
  });
 
 </script>

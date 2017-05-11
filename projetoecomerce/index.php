@@ -1,5 +1,9 @@
 <?php
 
+use Slim\Helper\Set;
+use Slim\Http\Request;
+use Slim\Http\Response;
+
 require_once ('inc/Slim-2.x/Slim/Slim.php');
 require_once ('src/DB/Sql.php');
 require_once ('src/Model/User.php');
@@ -67,10 +71,63 @@ $app->get('/admin/cadastroprod-last-id', function(){
 	
 });
 
-$app->post('/admin/cadastroprod',function () {
+$app->post('/admin/cadastroprod',function () use ($app) {
+		
+		$sql = new Sql();
+		
+		$results = $sql->select("SELECT idproduct FROM tb_products WHERE idproduct = :idproduct",array(
+				
+				":idproduct"=>$_POST["idproduct"]
+		));
+		
+		if(empty($results)){
+		
+		
+			$products = new Products();
+			
+			$products -> insert( 	$_POST["idproduct"],
+					$_POST["desproduct"],
+					$_POST["vlprice"],
+					$_POST["vlwidth"],
+					$_POST["vlheight"],
+					$_POST["vllength"],
+					$_POST["vlweigth"],
+					$_POST["desurl"]); 
+			
+			$app=Slim\Slim::getInstance();
+			$response = $app->response();
+			$response['Content-Type'] = 'application/json';
+			$response->status(200);
+			$response->body(json_encode((object)array('success'=>true)));
+
+			$host  = $_SERVER['HTTP_HOST'];
+			$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+			$extra = 'cadastroprod.php';
+			header("Location: http://$host$uri/$extra");
+			exit;
+		
+		}else{
+			
+			$retorno = array();
+			
+			array_push($retorno, array(
+					
+					"retorno"=>"code-invalid:already-exists.",
+			
+			));
+			
+			
+			$app=Slim\Slim::getInstance();
+			$response = $app->response();
+			$response['Content-Type'] = 'application/json';
+			$response->status(200);
+			$response->body(json_encode((object)array('success'=>false)));
+			
+		
+			
+		}
 	
-	
-		$products = new Products();
+		/* $products = new Products();
 		
 		$products -> insert( 	$_POST["idproduct"], 
 								$_POST["desproduct"], 
@@ -79,11 +136,11 @@ $app->post('/admin/cadastroprod',function () {
 								$_POST["vlheight"], 
 								$_POST["vllength"], 
 								$_POST["vlweigth"], 
-								$_POST["desurl"]);
+								$_POST["desurl"]); */
 		
-		header("Location: /projetoecomerce/admin/cadastroprod");
+		//header("Location: /projetoecomerce/admin/cadastroprod");
 		
-		exit;
+		//exit;
 	});
 
 $app->run();
