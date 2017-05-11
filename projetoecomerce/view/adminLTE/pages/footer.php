@@ -36,6 +36,8 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../view/adminlte/dist/js/demo.js"></script>
 
+<script src="../lib/jquery/jquery.min.js" ></script>
+
 <script src="../lib/angularjs/angular.min.js"></script>
 </body>
 </html>

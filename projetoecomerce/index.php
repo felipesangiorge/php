@@ -51,6 +51,12 @@ $app->get('/admin/cadastroprod',function () {
 		
 	});
 
+$app->get('/admin/cadastroprod-existente',function () {
+		
+		
+		
+});
+
 $app->get('/admin/cadastroprod-last-id', function(){
 	
 	$sql = new Sql();
@@ -62,8 +68,8 @@ $app->get('/admin/cadastroprod-last-id', function(){
 });
 
 $app->post('/admin/cadastroprod',function () {
-		
-		
+	
+	
 		$products = new Products();
 		
 		$products -> insert( 	$_POST["idproduct"], 

@@ -482,48 +482,52 @@
 
     <!-- Main content -->
 
-    <form action="http://localhost/projetoecomerce/admin/cadastroprod-last-id" method="get">
-
-      <div class="form-group" ng-repeat="idproduct in idproducts">
-          <input type="text" class="form-control" ng-controller="ecommerce-productid" placeholder="Código do Produto" name="idproduct"><?php $_GET['idproduct'] ?>
-         
-        </div>
+    
 
     <form action="http://localhost/projetoecomerce/admin/cadastroprod" method="post">
 
       <div class="form-group" ng-repeat="idproduct in idproducts">
-          <input type="text" class="form-control" ng-controller="ecommerce-productid" placeholder="Código do Produto" name="idproduct">
+
+      <h4 id="idproducth4">Código do produto:</h4>
+          <input type="text" id="idproduct" class="form-control" ng-controller="ecommerce-productid" placeholder="Código do Produto" name="idproduct">
          
         </div>
 
       <div class="form-group">
+      <h4 id="idproducth4">Descrição Produto:</h4>
         <input type="text" class="form-control" placeholder="Descrição Produto" name="desproduct">
        
       </div>
       <div class="form-group">
+      <h4 id="idproducth4">Preço:</h4>
         <input type="number" min="1" step="any" class="form-control" placeholder="Preço" name="vlprice">
         
       </div>
 
       <div class="form-group">
+      <h4 id="idproducth4">Largura:</h4>
         <input type="number" min="1" step="any" class="form-control" placeholder="Largura" name="vlwidth">
        
       </div>
       <div class="form-group">
+      <h4 id="idproducth4">Altura:</h4>
         <input type="number" min="1" step="any" class="form-control" placeholder="Altura" name="vlheight">
         
       </div>
 
       <div class="form-group">
+      <h4 id="idproducth4">Comprimento:</h4>
         <input type="number" min="1" step="any" class="form-control" placeholder="Comprimento" name="vllength">
        
       </div>
       <div class="form-group">
+      <h4 id="idproducth4">Peso:</h4>
         <input type="number" min="0.1" step="any" class="form-control" placeholder="Peso" name="vlweigth">
         
       </div>
 
       <div class="form-group">
+      <h4 id="idproducth4">Url:</h4>
         <input type="text" class="form-control" placeholder="Url" name="desurl"> 
       </div>
    
@@ -532,7 +536,7 @@
         <div class="col-xs-8"> 
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Confirmar</button>
         </div>
         <!-- /.col -->
       </div>
@@ -742,34 +746,45 @@
 ?>
 
 <script>
-angular.module("ecommerce", []).controller("ecommerce-productid", function($scope, $http){
+ /*$(function(){
 
-    var loadLastId = function(){
+ var url='http://localhost/projetoecomerce/admin/cadastroprod-last-id'
 
-        $http({
-            method:'GET',
-            url:'http://localhost/projetoecomerce/admin/cadastroprod-last-id'
-        }).then(function(response){
+ var listid = $('#idproduct');
 
-            $scope.idproduct = {
+$(document).ready(function(){
+	
+	$.ajax({
 
-                idproduct:data.idproduct
-            };
+		url:url,
+		method:'GET',
+		type:"JSON"
 
-            $scope.idproduct = data.idproducts;
-            console.log(data);
+	}).done(function(idprod){
 
-        }, function(response){
 
-            console.error(response);
+		listid.html("<h1>"+idprod+"</h1>");
+	});
 
-        });
+		return false;
+ });
+		
 
-    };
+ });*/
 
- 
-    loadLastId();
+ $(document).ready(function(){
 
-});
+ 	$.getJSON('http://localhost/projetoecomerce/admin/cadastroprod-last-id',function(data){
+ 		$.each(data, function(k, v){
+
+ 			console.log(v.idproduct);
+
+ 			$('#idproduct').attr("placeholder","Ultimo Código Cadastrado: "+v.idproduct);
+ 			$('#idproducth4').text("Código do Produto/Ultimo Código Cadastrado ("+v.idproduct+")");
+ 		});
+ 		
+ 	});
+
+ });
 
 </script>
