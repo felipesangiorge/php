@@ -1,0 +1,330 @@
+@font-face{
+	font-family: "Opensans";
+	src:url(../fonts/Open_Sans/OpenSans-Regular.ttf);
+	font-size: 1em;
+}
+body{width:100%}
+
+header{
+	width: 100%;
+	height: 230px;
+	background:#2c3e50;
+	position: relative;
+	z-index: 2;
+
+}
+
+header .container{
+	position: relative;
+}
+
+header .header-red{
+	
+	height: 100px;
+	background: url("../img/vegetable.jpg") no-repeat;
+}
+
+header .header-red li a{
+    height: 15px
+}
+
+header .row{
+	width: 100%;
+}
+
+header #logotipo{
+	position: absolute;
+	top: 90px;
+
+}
+
+.img-circle {
+    border-radius: 50%;
+}
+
+#menu ul{
+	width: 100%;
+	display: inline-flex;
+}
+
+#searchBtn{
+	background-image: url(../img/search.png);
+	background-repeat: no-repeat;
+	height: 34px;
+	width: 34px;
+	border:outline-style: ;
+}
+
+#search-input{
+	border: none;
+	background-color: #FFF;
+	transition:1s;
+}
+
+#searchBtn{
+	margin-right: 60px;
+	transition: 1s;
+}
+
+#searchBtn.ativo{
+    margin-right:0px;
+}
+
+#search{
+	width: 300px;
+}
+
+#menu{
+	margin-top: 30px;
+	margin-right:30px;
+}
+
+#menu li{
+	color:#FFF;
+	padding: 10px;
+	display:inline-block;
+	font-family: "Opensans";
+	margin-top: 10px;
+}
+
+#menu li a {
+	color: #FFF;
+	font-size:16px;
+	margin-top: 6px;
+}
+
+#menu li .search {
+	width: 182px;
+	transition 1s;
+}
+
+div .col-lg-6{
+	width: 100%
+}
+
+#menu input-group{
+	width: 500px
+	height:20px;
+}
+
+#banner{
+	width: 100%;
+	height:700px;
+	position: relative;	
+}
+
+#banner hr{
+	width: 200px;
+	border: solid 2px;
+}
+
+#banner h4{
+	width: 350px;	
+}
+
+#main-player{
+  	margin-left: 380px;
+}
+
+#main-player video{
+  	margin-left: 380px;
+}
+
+
+#maintext-video video{
+	width: 450px;
+	height: 350px;
+    margin-left: 340px;
+}
+
+#maintext-video img{
+	z-index: 40;
+	margin-left: 60px;
+	width: 250px;
+	height: 250px;
+	border-radius: 0px;
+	border: solid 2px;
+	border-color: #e67e22;
+}
+#maintext-video hr{
+ 	width: 900px;
+}
+
+#video-carousel{
+
+margin: 10px;
+
+}
+
+#noticias{
+		margin-top: 240px;
+	    position: relative;
+}
+
+#noticias h1{
+	width: 350px;
+	height: 40px;
+	text-transform: uppercase;
+	text-align: center;
+	margin-left: 400px;
+	font-family: "Opensans";
+
+}
+#noticias hr{
+	width: 350px;
+	border: solid 2px;
+}
+
+#noticias .thumbnails img{
+margin-top: 20px;
+width: 250px;
+}
+
+
+
+#noticias .thumbnails h4{
+font-size: 15px;
+width: 260px;
+color: #e67e22;
+font-family: "Opensans";
+}
+
+#noticias h4{
+font-size: 18px;
+color: #e67e22;
+font-family: "Opensans";
+}
+
+#noticias time{
+width: 200px;
+display: inline-block;
+font-size: 15px;
+color: #2c3e50;
+font-family: "Opensans";
+}
+
+#estatisticas{
+	position: relative;
+	display: block;
+	background: #2c3e50;
+	margin-top: 20px;
+	width:100%;
+	height: 200px;
+
+}
+
+#estatisticas h4{
+	font-size: 40px;
+	margin-left: 100px;
+	margin-top: 50px;
+	color: #FFF;
+	font-family: "Opensans";
+}
+
+#estatisticas h5{
+	font-size: 20px;
+	margin-left: 100px;
+	color: #FFF;
+	font-family: "Opensans";
+}
+
+#call-to-action {
+	text-align: center;
+
+}
+
+#call-to-action h2{
+	width: 480px;
+	height: 40px;
+	margin-left: 350px;
+	text-transform: uppercase;
+	text-align: center;
+	font-family: "Opensans";
+
+}
+#call-to-action hr{
+	width: 480px;
+	border: solid 2px;
+	margin-top: 35px;
+}
+
+#call-to-action p{
+	width: 400px;
+	margin-left: 400px;
+
+}
+
+#call-to-action a{
+	width: 120px;
+	border: solid 1px;
+	background: #2c3e50;
+	color: #FFF;
+	border-radius: 0;
+	margin-top: 20px;
+	
+}
+
+footer .row-rodape{
+	margin-top: 20px;
+	height: 200px;
+	background: #2c3e50;
+	color:#FFF;
+}
+
+footer .row-rodape img{
+	margin-top: 20px;	
+}
+
+footer .row-rodape a{
+	color: #FFF;
+	margin-top:10px;
+}
+
+footer .row-rodape p{
+	margin: 0px;
+	margin-top: 10px;
+}
+#endereco{
+	margin-top: 20px;
+
+}
+
+footer .row-rodape hr{
+	width: 150px;
+	margin: 0px;
+}
+
+footer .row-rodape ul{
+	margin-top:10px;
+}
+footer .row-rodape li{
+	margin-top:5px;
+}
+
+footer .row-rodape h5{
+	text-transform: uppercase;
+	margin-bottom: 0px;
+}
+
+footer .col-xs-4{
+	margin-top: 40px;	
+}
+
+footer .row-rodape-baixo{
+
+	height: 60px;
+	background: #34495e;
+}
+
+footer .row-rodape-baixo p{
+	color: #2980b9;
+	margin-left: 80px;
+	margin-top: 20px;
+}
+footer .row-rodape-baixo adress{
+	color: #2980b9;
+	margin-left: 80px;
+	margin-top: 20px;
+}
+
+

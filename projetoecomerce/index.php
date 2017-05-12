@@ -25,6 +25,33 @@ $app->get('/',function () {
        
     });
 
+$app->get('/shop',function () {
+		
+		require_once("view/page/shop.php");
+		
+});
+
+	$app->get('/produtos', function(){
+		
+		$sql = new Sql();
+		
+		$data = $sql->select("SELECT * FROM tb_products order by RAND() limit 4;");
+		
+		foreach ($data as &$produto) {
+			$preco = $produto['preco'];
+			$centavos = explode(".", $preco);
+			$produto['preco'] = number_format($preco, 0, ",", ".");
+			$produto['centavos'] = end($centavos);
+			$produto['parcelas'] = 10;
+			$produto['parcela'] = number_format($preco/$produto['parcelas'], 2, ",", ".");
+			$produto['total'] = number_format($preco, 2, ",", ".");
+		}
+		
+		echo json_encode($data);
+		
+	});
+	
+
 
 $app->get('/admin',function () {
 		
@@ -54,6 +81,8 @@ $app->get('/admin/cadastroprod',function () {
 		require_once("view/adminlte/pages/cadastroprod.php");
 		
 	});
+
+
 
 $app->get('/admin/cadastroprod-existente',function () {
 		
@@ -92,22 +121,14 @@ $app->post('/admin/cadastroprod',function () use ($app) {
 					$_POST["vlheight"],
 					$_POST["vllength"],
 					$_POST["vlweigth"],
-					$_POST["desurl"]); 
+					$_POST["desurl"],
+					$_POST["imgimage"]); 
 			
-			$app=Slim\Slim::getInstance();
-			$response = $app->response();
-			$response['Content-Type'] = 'application/json';
-			$response->status(200);
-			$response->body(json_encode((object)array('success'=>true)));
-
-			$host  = $_SERVER['HTTP_HOST'];
-			$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-			$extra = 'cadastroprod.php';
-			header("Location: http://$host$uri/$extra");
-			exit;
 		
 		}else{
 			
+			$app->get('/admin/cadastroprod-existente',function () {
+				
 			$retorno = array();
 			
 			array_push($retorno, array(
@@ -116,31 +137,17 @@ $app->post('/admin/cadastroprod',function () use ($app) {
 			
 			));
 			
+			return json_encode($retorno);
 			
-			$app=Slim\Slim::getInstance();
-			$response = $app->response();
-			$response['Content-Type'] = 'application/json';
-			$response->status(200);
-			$response->body(json_encode((object)array('success'=>false)));
-			
-		
+			});
 			
 		}
+		$resposta = "erro";
+		
+		header("Location: http://localhost/projetoecomerce/admin/cadastroprod");
+		
+		exit;
 	
-		/* $products = new Products();
-		
-		$products -> insert( 	$_POST["idproduct"], 
-								$_POST["desproduct"], 
-								$_POST["vlprice"], 
-								$_POST["vlwidth"], 
-								$_POST["vlheight"], 
-								$_POST["vllength"], 
-								$_POST["vlweigth"], 
-								$_POST["desurl"]); */
-		
-		//header("Location: /projetoecomerce/admin/cadastroprod");
-		
-		//exit;
 	});
 
 $app->run();

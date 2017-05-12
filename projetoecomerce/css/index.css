@@ -1,0 +1,555 @@
+@font-face{
+	font-family: "Opensans";
+	src:url(../fonts/Open_Sans/OpenSans-Regular.ttf);
+	font-size: 1em;
+}
+body{width:100%}
+
+header{
+	width: 100%;
+	height: 230px;
+	background:#2c3e50;
+	position: relative;
+	z-index: 2;
+
+}
+
+header .container{
+	position: relative;
+}
+
+header .header-red{
+	
+	height: 100px;
+	background: url("../img/vegetable.jpg") no-repeat;
+}
+
+header .header-red li a{
+    height: 15px
+}
+
+header .row{
+	width: 100%;
+}
+
+header #logotipo{
+	position: absolute;
+	top: 90px;
+
+}
+
+.img-circle {
+    border-radius: 50%;
+    z-index: 3;
+}
+
+#menu ul{
+	width: 100%;
+	display: inline-flex;
+}
+
+#searchBtn{
+	background-image: url(../img/search.png);
+	background-repeat: no-repeat;
+	height: 34px;
+	width: 34px;
+	border:outline-style: ;
+}
+
+#search-input{
+	border: none;
+	background-color: #FFF;
+	transition:1s;
+}
+
+#searchBtn{
+	margin-right: 60px;
+	transition: 1s;
+}
+
+#searchBtn.ativo{
+    margin-right:0px;
+}
+
+#search{
+	width: 300px;
+}
+
+#menu{
+	margin-top: 30px;
+	margin-right:30px;
+}
+
+#menu li{
+	color:#FFF;
+	padding: 10px;
+	display:inline-block;
+	font-family: "Opensans";
+	margin-top: 10px;
+}
+
+#menu li a {
+	color: #FFF;
+	font-size:16px;
+	margin-top: 6px;
+}
+
+#menu li .search {
+	width: 182px;
+	transition 1s;
+}
+
+div .col-lg-6{
+	width: 100%
+}
+
+#menu input-group{
+	width: 500px
+	height:20px;
+}
+
+#banner{
+	width: 100%;
+	height:700px;
+	position: relative;
+	background: url(../img/banner1.jpg);
+}
+
+#maintext{
+	width: 450px;
+    display: inline-block;
+    margin-left: 80px;
+    color: #FFF;
+    text-align: center;
+    margin-top: 70px;
+}
+
+#maintext img{
+	width: 450px;
+	height: 450px;
+	border-radius: 20px;
+	border: solid 2px;
+	border-color: #e67e22;
+}
+
+#noticias{
+	    position: relative;
+}
+
+#noticias h1{
+	width: 350px;
+	height: 40px;
+	text-transform: uppercase;
+	text-align: center;
+	margin-left: 400px;
+	font-family: "Opensans";
+
+}
+#noticias hr{
+	width: 350px;
+	border: solid 2px;
+}
+
+#noticias .thumbnails img{
+margin-top: 20px;
+width: 250px;
+}
+
+
+
+#noticias .thumbnails h4{
+font-size: 15px;
+width: 260px;
+color: #e67e22;
+font-family: "Opensans";
+}
+
+#noticias h4{
+font-size: 18px;
+color: #e67e22;
+font-family: "Opensans";
+}
+
+#noticias time{
+width: 200px;
+display: inline-block;
+font-size: 15px;
+color: #2c3e50;
+font-family: "Opensans";
+}
+
+#estatisticas{
+	position: relative;
+	display: block;
+	background: #2c3e50;
+	margin-top: 20px;
+	width:100%;
+	height: 200px;
+
+}
+
+#estatisticas h4{
+	font-size: 40px;
+	margin-left: 100px;
+	margin-top: 50px;
+	color: #FFF;
+	font-family: "Opensans";
+}
+
+#estatisticas h5{
+	font-size: 20px;
+	margin-left: 100px;
+	color: #FFF;
+	font-family: "Opensans";
+}
+
+#call-to-action {
+	text-align: center;
+
+}
+
+#call-to-action h2{
+	width: 480px;
+	height: 40px;
+	margin-left: 350px;
+	text-transform: uppercase;
+	text-align: center;
+	font-family: "Opensans";
+
+}
+#call-to-action hr{
+	width: 480px;
+	border: solid 2px;
+	margin-top: 35px;
+}
+
+#call-to-action p{
+	width: 400px;
+	margin-left: 400px;
+
+}
+
+#call-to-action a{
+	width: 120px;
+	border: solid 1px;
+	background: #2c3e50;
+	color: #FFF;
+	border-radius: 0;
+	margin-top: 20px;
+	
+}
+
+footer .row-rodape{
+	margin-top: 20px;
+	height: 200px;
+	background: #2c3e50;
+	color:#FFF;
+}
+
+footer .row-rodape img{
+	margin-top: 20px;	
+}
+
+footer .row-rodape a{
+	color: #FFF;
+	margin-top:10px;
+}
+
+footer .row-rodape p{
+	margin: 0px;
+	margin-top: 10px;
+}
+#endereco{
+	margin-top: 20px;
+
+}
+
+footer .row-rodape hr{
+	width: 150px;
+	margin: 0px;
+}
+
+footer .row-rodape ul{
+	margin-top:10px;
+}
+footer .row-rodape li{
+	margin-top:5px;
+}
+
+footer .row-rodape h5{
+	text-transform: uppercase;
+	margin-bottom: 0px;
+}
+
+footer .col-xs-4{
+	margin-top: 40px;	
+}
+
+footer .row-rodape-baixo{
+
+	height: 60px;
+	background: #34495e;
+}
+
+footer .row-rodape-baixo p{
+	color: #2980b9;
+	margin-left: 80px;
+	margin-top: 20px;
+}
+footer .row-rodape-baixo adress{
+	color: #2980b9;
+	margin-left: 80px;
+	margin-top: 20px;
+}
+
+#btn-bars, #btn-search{
+		display: none;
+	}
+
+.scroll.display{
+	z-index: 6;
+	display: block;
+	left: 93%;
+	top: 400px;
+	
+
+}
+.scroll.displaynone{
+	display: none;
+	left: 93%;
+}
+
+.scroll a{
+	color: #2c3e50;
+	background:none;
+	font-size: 50px;
+	width: 100px;
+	height: 80px;
+	border:none;
+}
+.scroll .btn-primary:hover{
+	color:  #fff;
+	background:#2c3e50;
+
+
+}
+
+
+	/*----------------------------shop--------------------------------*/
+.text-arial-cinza{
+	font-family: arial;
+	font-size: 12px;
+	color: #666;
+}
+.text-orange{
+	color: #e67e22;
+}
+#destaque-produtos-container {
+	position: relative;
+	margin-top:40px;
+	margin-bottom: 40px;
+}
+
+#destaque-produtos .col-imagem{
+	text-align: center;
+
+}
+
+#destaque-produtos .col-imagem img{
+	width: 300px;
+
+}
+#destaque-produtos .col-descricao h2{
+	font-family: arial;
+	font-size: 20px;
+	color: #666;
+	margin-bottom: 10px;
+}
+#destaque-produtos .item{
+	display: inline-block;
+}
+#destaque-produtos .col-descricao .box-valor{
+	width: 100%;
+	position: relative;
+}
+
+#destaque-produtos .col-descricao .box-valor .text-reais{
+	font-size: 18px;
+	font-weight: bold;
+	position: absolute;
+    top: 12px;
+    left: 22px;
+}
+#destaque-produtos .col-descricao .box-valor .text-valor{
+font-size: 50px;
+position: absolute;
+top: -20px;
+left: 55px;
+}
+#destaque-produtos .col-descricao .box-valor .text-valor-centavos{
+font-size: 30px;
+position: absolute;
+    top: -12px;
+    left: 185px;
+}
+#destaque-produtos .col-descricao .box-valor .text-parcelas{
+	margin-top: 20px;
+
+}
+#destaque-produtos .col-descricao .btn-comprar{
+	font-size: 26px;
+	padding: 10px 0;
+}
+#destaque-produtos .col-descricao .btn-comprar .fa{
+	font-size: 34px;
+}
+
+#destaque-produtos #btn-destaque-next{
+	position: absolute;
+	right:-40px;
+    top:100px;
+    background: none;
+    color: #e67e22;
+    border: none;
+    font-size: 40px;
+}
+#destaque-produtos #btn-destaque-prev{
+    position: absolute;
+    left:-40px;
+    top: 100px;
+    background: none;
+    color: #e67e22;
+    border: none;
+    font-size: 40px;
+}
+
+#promocoes .col-sm-2,#promocoes .col-sm-10{
+	background: #e67e22;
+	text-align: center;
+}
+
+#promocoes .col-sm-2{
+	font-size: 12px;
+}
+
+#promocoes p{
+	text-align: center;
+    width: 100%;
+    height: 70px;
+    position: absolute;
+    background: #e67e22;
+    top: 60px;
+    font-size:15px;
+
+}
+#promocoes .box-promocao{
+	color: #FFF;
+	background: #e67e22;
+	width: 100%;
+	height: 150px;
+	position: relative;
+}
+
+
+
+#promocoes .box-promocao .text-ate{
+	position: absolute;
+	font-size: 25px;
+	top: 0px;
+	left: 8px;
+}
+
+#promocoes .box-promocao .text-numero-desconto{
+	position: absolute;
+    font-size: 120px;
+    left: 18px;
+}
+
+#promocoes .box-promocao .text-porcentagem{
+	position: absolute;
+    font-size: 35px;
+    left: 160px;
+    top: 15px;
+}
+
+#promocoes .box-promocao .text-off{
+    position: absolute;
+    font-size: 36px;
+    left: 162px;
+    top: 42px;
+}
+
+#mais-buscados h1{
+	font-size: 30px;
+}
+#mais-buscados hr{
+	border:solid 2px;
+	width: 350px;
+	border-color: #f39c12;
+}
+#mais-buscados-carrousel .owl-carousel{
+	width: 200px;
+	height: 200px;
+}
+
+#mais-buscados-carrousel .img-mais-buscados{
+	width: 150px;
+	height: 150px;
+}
+
+
+#mais-buscados-carrousel h3{
+	font-size: 14px;
+	text-align: left;
+	width: 160px;
+	color: black;
+}
+
+#mais-buscados-carrousel .text-estrelas{
+	text-align: left;
+	display: inline-flex;
+
+	
+}
+#mais-buscados-carrousel .text-qtd{
+
+	text-align: left;
+	margin-left: 100px;
+	color: black;
+}
+#mais-buscados-carrousel .text-valor{
+text-align: left;
+font-size: 25px;
+color: #e67e22;
+font-weight: bold;
+width: 200px;
+}
+#mais-buscados-carrousel .text-parcelado{
+color: #ccc;
+text-align: left;
+width: 200px;
+}
+
+#mais-buscados-carrousel .row{
+
+	display: inline-flex;
+}
+
+/* Tela Cart (Carrinho de compras) */
+
+#cart-products{
+	border:solid 1px;
+}
+
+table tr img{
+	width: 150px;
+	height: 150px;
+}
+
+table tr td{
+	font-family: arial;
+	font-size: 22px;
+}
+table tr td .input-group-btn button{
+	background:none;
+}

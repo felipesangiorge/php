@@ -131,13 +131,14 @@ class Products{
 								$vlheight,
 								$vllength,
 								$vlweigth,
-								$desurl){
+								$desurl,
+								$imgimage){
 		
 									
 			$sql = new Sql();
 			
-			$sql ->query("INSERT INTO tb_products (idproduct,desproduct,vlprice,vlwidth,vlheight,vllength,vlweight,desurl)
-								VALUES (:idproduct,:desproduct,:vlprice,:vlwidth,:vlheight,:vllength,:vlweight,:desurl)",array(
+			$sql ->query("INSERT INTO tb_products (idproduct,desproduct,vlprice,vlwidth,vlheight,vllength,vlweight,desurl,imgimage)
+								VALUES (:idproduct,:desproduct,:vlprice,:vlwidth,:vlheight,:vllength,:vlweight,:desurl,:imgimage)",array(
 										
 										"idproduct"=>$idproduct,
 										":desproduct"=>$desproduct,
@@ -146,7 +147,8 @@ class Products{
 										":vlheight"=>$vlheight,
 										":vllength"=>$vllength,
 										":vlweight"=>$vlweigth,
-										":desurl"=>$desurl
+										":desurl"=>$desurl,
+										":imgimage"=>$imgimage
 										
 								));
 			
