@@ -11,7 +11,7 @@ class Products{
 	private $vlheight;
 	private $vllength;
 	private $vlweight;
-	private $desurl;
+	private $visivel;
 	private $dtregister;
 	
 	
@@ -111,15 +111,15 @@ class Products{
 		
 	}
 	
-	public function getDtregister(){
+	public function getVisivel(){
 		
-		return $this -> dtregister;
+		return $this -> visivel;
 		
 	}
 	
-	public function setDtregister($value){
+	public function setVisivel($value){
 		
-		$this->dtregister = $value;
+		$this->visivel = $value;
 		
 	}
 	

@@ -555,7 +555,7 @@
 
        <div class="form-group">
       <h4 id="">Visivel:</h4>
-        <input type="number" class="form-control" name="visivel"> 
+        <input type="checkbox" value="1"  name="visivel" style="margin-left: 20px"> 
       </div>
 
       <div class="form-group">
@@ -818,16 +818,7 @@ $(document).ready(function(){
     		
   	});
 
-    $.getJSON('http://localhost/projetoecomerce/admin/cadastroprod-existente',function(data){
-      $.each(data, function(k, v){
-
-
-        console.log(v.retorno);
-      
-
-      });
-        
-    });
+    
 
    });
 
@@ -855,6 +846,7 @@ $("sendFormCadastroprod").submit(function(event){
     request.done(function (response, textStatus, jqXHR){
   
         console.log("Dados enviados");
+        console.log(response, textStatus, jqXHR);
     });
 
    

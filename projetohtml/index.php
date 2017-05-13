@@ -1,4 +1,6 @@
 <?php
+use Slim\Http\Response;
+
 require 'inc/configuration.php';
 require 'inc/Slim-2.x/Slim/Slim.php';
 require_once ('src/DB/Sql.php');
@@ -122,6 +124,7 @@ LIMIT 10;
 
 
 });
+
 
 $app->get("/produto-:id_prod",function($id_prod){
 
@@ -300,7 +303,7 @@ $app ->delete("/carrinho-produto",function(){
 							
 						});
 							
-							$app->post('/admin/cadastroprod',function () use ($app) {
+							$app->post('/admin/cadastroprod',function() use ($app){
 								
 								$sql = new SqlAdm();
 								
@@ -311,9 +314,11 @@ $app ->delete("/carrinho-produto",function(){
 								
 								if(empty($results)){
 									
-									
+								
+								
 									$products = new Products();
 									
+					
 									$products -> insert( 	$_POST["id_prod"],
 											$_POST["nome_prod_curto"],
 											$_POST["nome_prod_longo"],
@@ -329,25 +334,22 @@ $app ->delete("/carrinho-produto",function(){
 											$_POST["visivel"],
 											$_POST["comprimento_centimetro"]);
 									
+						
+									
 									
 								}else{
 									
-									$app->get('/admin/cadastroprod-existente',function () {
-										
-										$retorno = array();
-										
-										array_push($retorno, array(
-												
-												"retorno"=>"code-invalid:already-exists.",
-												
-										));
-										
-										return json_encode($retorno);
-										
-									});
-										
+									$result = array("result","1");
+									
+									header("Content-Type: application/json");
+									echo json_encode($result);
+									exit;
+									
+									
+	
 								}
-								$resposta = "erro";
+										
+								
 								
 								header("Location: http://localhost/projetohtml/admin/cadastroprod");
 								
