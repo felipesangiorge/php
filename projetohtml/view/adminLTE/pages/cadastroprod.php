@@ -484,57 +484,85 @@
 
     
 
-    <form id="sendFormCadastroprod" action="http://localhost/projetoecomerce/admin/cadastroprod" method="post">
+    <form id="sendFormCadastroprod"  method="post">
 
       <div class="form-group" ng-repeat="idproduct in idproducts">
 
-      <h4 id="idproducth4">Código do produto:</h4>
-          <input type="text" id="idproduct" class="form-control" ng-controller="ecommerce-productid" placeholder="Código do Produto" name="idproduct">
+      <h4 id="idproducth4">Id Produto:</h4>
+          <input type="number" id="idproduct" class="form-control" ng-controller="ecommerce-productid" placeholder="Id produto" name="id_prod">
          
         </div>
 
       <div class="form-group">
-      <h4 id="idproducth4">Descrição Produto:</h4>
-        <input type="text" class="form-control" placeholder="Descrição Produto" name="desproduct">
+      <h4 id="">Nome Curto:</h4>
+        <input type="text" class="form-control" placeholder="Nome Longo" name="nome_prod_curto">
        
-      </div>
-      <div class="form-group">
-      <h4 id="idproducth4">Preço:</h4>
-        <input type="number" min="1" step="any" class="form-control" placeholder="Preço" name="vlprice">
-        
-      </div>
-
-      <div class="form-group">
-      <h4 id="idproducth4">Largura:</h4>
-        <input type="number" min="1" step="any" class="form-control" placeholder="Largura" name="vlwidth">
-       
-      </div>
-      <div class="form-group">
-      <h4 id="idproducth4">Altura:</h4>
-        <input type="number" min="1" step="any" class="form-control" placeholder="Altura" name="vlheight">
-        
-      </div>
-
-      <div class="form-group">
-      <h4 id="idproducth4">Comprimento:</h4>
-        <input type="number" min="1" step="any" class="form-control" placeholder="Comprimento" name="vllength">
-       
-      </div>
-      <div class="form-group">
-      <h4 id="idproducth4">Peso:</h4>
-        <input type="number" min="0.1" step="any" class="form-control" placeholder="Peso" name="vlweigth">
-        
-      </div>
-
-      <div class="form-group">
-      <h4 id="idproducth4">Url:</h4>
-        <input type="text" class="form-control" placeholder="Url" name="desurl"> 
       </div>
 
        <div class="form-group">
-      <h4 id="idproducth4">Imagem:</h4>
-        <input type="file" class="form-control" name="imgimage"> 
+      <h4 id="">Nome Longo:</h4>
+        <input type="text" class="form-control" placeholder="Nome Longo" name="nome_prod_longo">
+       
       </div>
+
+      <div class="form-group">
+      <h4 id="">Codigo interno:</h4>
+        <input type="number" min="1" step="any" class="form-control" placeholder="Codigo interno" name="codigo_interno">
+        
+      </div>
+
+      <div class="form-group">
+      <h4 id="">Id Categoria:</h4>
+        <input type="number" min="1" step="any" class="form-control" placeholder="id categoria" name="id_cat">
+       
+      </div>
+      <div class="form-group">
+      <h4 id="">Preço:</h4>
+        <input type="number" min="1" step="any" class="form-control" placeholder="preço" name="preco">
+        
+      </div>
+
+      <div class="form-group">
+      <h4 id="">Peso:</h4>
+        <input type="number" min="1" step="any" class="form-control" placeholder="peso" name="peso">
+       
+      </div>
+      <div class="form-group">
+      <h4 id="">Largura Centimetros:</h4>
+        <input type="number" min="0.1" step="any" class="form-control" placeholder="Largura Centimetros" name="largura_centimetro">
+        
+      </div>
+
+      <div class="form-group">
+      <h4 id="">Altura Centimetros:</h4>
+        <input type="number" class="form-control" placeholder="Altura Centimetros" name="altura_centimetro"> 
+      </div>
+
+      <div class="form-group">
+      <h4 id="">Quantidade Estoque:</h4>
+        <input type="number" class="form-control" placeholder="Quantidade Estoque" name="quantidade_estoque"> 
+      </div>
+
+      <div class="form-group">
+      <h4 id="">Preço promorcional:</h4>
+        <input type="number" class="form-control" placeholder="Preço promorcional" name="preco_promorcional"> 
+      </div>
+
+      <div class="form-group">
+      <h4 id="">Foto Principal:</h4>
+        <input type="file" class="form-control" name="foto_principal"> 
+      </div>
+
+       <div class="form-group">
+      <h4 id="">Visivel:</h4>
+        <input type="number" class="form-control" name="visivel"> 
+      </div>
+
+      <div class="form-group">
+      <h4 id="">Comprimento centimetros:</h4>
+        <input type="number" class="form-control" placeholder="Comprimento Centimetro" name="comprimento_centimetro"> 
+      </div>
+
    
 
       <div class="row">
@@ -779,13 +807,13 @@ $(document).ready(function(){
 
  $(document).ready(function(){
 
- 	$.getJSON('http://localhost/projetoecomerce/admin/cadastroprod-last-id',function(data){
+ 	$.getJSON('http://localhost/projetohtml/admin/cadastroprod-last-id',function(data){
    		$.each(data, function(k, v){
 
 
 
-   			$('#idproduct').attr("placeholder","Ultimo Código Cadastrado: "+v.idproduct);
-   			$('#idproducth4').text("Código do Produto/Ultimo Código Cadastrado ("+v.idproduct+")");
+   			$('#idproduct').attr("placeholder","Ultimo Código Cadastrado: "+v.id_prod);
+   			$('#idproducth4').text("Código do Produto/Ultimo Código Cadastrado ("+v.id_prod+")");
    		});
     		
   	});
@@ -818,7 +846,7 @@ $("sendFormCadastroprod").submit(function(event){
     var serializedData = $form.serialize();
     $inputs.prop("disabled", true);
     request = $.ajax({
-        url: "http://localhost/projetoecomerce/admin/cadastroprod",
+        url: "http://localhost/projetohtml/admin/cadastroprod",
         type: "post",
         data: serializedData
     });

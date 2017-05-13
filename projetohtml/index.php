@@ -1,6 +1,9 @@
 <?php
 require 'inc/configuration.php';
 require 'inc/Slim-2.x/Slim/Slim.php';
+require_once ('src/DB/Sql.php');
+require_once ('src/Model/Products.php');
+require_once ('src/Model/User.php');
 
 \Slim\Slim::registerAutoloader();
 
@@ -46,7 +49,7 @@ $app->get('/produtos', function(){
 
     $sql = new Sql();
 
-    $data = $sql->select("SELECT * FROM tb_produtos where preco_promorcional > 0 order by RAND() limit 4;");
+    $data = $sql->select("SELECT * FROM tb_produtos where preco_promorcional > 0 order by RAND() limit 4");
 
     foreach ($data as &$produto) {
         $preco = $produto['preco'];
@@ -101,7 +104,7 @@ tb_produtos.quantidade_estoque,
 tb_produtos.preco_promorcional,
 tb_produtos.foto_principal,
 tb_produtos.visivel
-LIMIT 4;
+LIMIT 10;
 
     	");
 
@@ -252,6 +255,105 @@ $app ->delete("/carrinho-produto",function(){
 
         ));
 });
+
+// ADMINISTRAÇÃO ---------------
+
+	$app->get('/admin',function () {
+		
+		User::verifyLogin($_SESSION['usuario'],$_SESSION['inadmin']);
+		
+	});
+		
+		$app->get('/admin/login',function () {
+			require_once("view/adminlte/pages/login.php");
+		});
+			
+			$app->post('/admin/login',function () {
+				
+				
+				$user = new User();
+				
+				$user -> login($_POST["login"], $_POST["password"]);
+				
+				header("Location: /projetoecomerce/admin");
+				
+				exit;
+			});
+				
+				$app->get('/admin/cadastroprod',function () {
+					
+					
+					require_once("view/adminlte/pages/cadastroprod.php");
+					
+				});
+					
+					
+					
+						
+						$app->get('/admin/cadastroprod-last-id', function(){
+							
+							$sql = new SqlAdm();
+							
+							$data = $sql->select("SELECT id_prod FROM tb_produtos ORDER BY id_prod DESC LIMIT 1");
+							
+							echo json_encode($data);
+							
+						});
+							
+							$app->post('/admin/cadastroprod',function () use ($app) {
+								
+								$sql = new SqlAdm();
+								
+								$results = $sql->select("SELECT id_prod FROM tb_produtos WHERE id_prod = :id_prod",array(
+										
+										":id_prod"=>$_POST["id_prod"]
+								));
+								
+								if(empty($results)){
+									
+									
+									$products = new Products();
+									
+									$products -> insert( 	$_POST["id_prod"],
+											$_POST["nome_prod_curto"],
+											$_POST["nome_prod_longo"],
+											$_POST["codigo_interno"],
+											$_POST["id_cat"],
+											$_POST["preco"],
+											$_POST["peso"],
+											$_POST["largura_centimetro"],
+											$_POST["altura_centimetro"],
+											$_POST["quantidade_estoque"],
+											$_POST["preco_promorcional"],
+											$_POST["foto_principal"],
+											$_POST["visivel"],
+											$_POST["comprimento_centimetro"]);
+									
+									
+								}else{
+									
+									$app->get('/admin/cadastroprod-existente',function () {
+										
+										$retorno = array();
+										
+										array_push($retorno, array(
+												
+												"retorno"=>"code-invalid:already-exists.",
+												
+										));
+										
+										return json_encode($retorno);
+										
+									});
+										
+								}
+								$resposta = "erro";
+								
+								header("Location: http://localhost/projetohtml/admin/cadastroprod");
+								
+								exit;
+								
+							});
 
 $app->run();
 
