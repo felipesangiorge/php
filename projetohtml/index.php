@@ -1,16 +1,15 @@
 <?php
 use Slim\Http\Response as Response;
 
-
+require 'vendor/autoload.php';
 require 'inc/configuration.php';
-require 'inc/Slim-2.x/Slim/Slim.php';
 require_once ('src/DB/Sql.php');
 require_once ('src/Model/Products.php');
 require_once ('src/Model/User.php');
 
-\Slim\Slim::registerAutoloader();
 
-$app = new \Slim\Slim();
+
+$app = new \Slim\App();
 
 
 $app->get(
@@ -289,7 +288,7 @@ $app ->delete("/carrinho-produto",function(){
 					
 					require_once("view/adminlte/pages/cadastroprod.php");
 					
-				});
+				})->setName('cadastroprod');
 					
 					
 					
@@ -304,7 +303,7 @@ $app ->delete("/carrinho-produto",function(){
 							
 						});
 							
-							$app->post('/admin/cadastroprod',function() use ($app){
+							$app->post('/admin/cadastroprod',function($request,$response) use ($app){
 								
 								$sql = new SqlAdm();
 								
@@ -340,16 +339,16 @@ $app ->delete("/carrinho-produto",function(){
 									
 								}else{
 									
+									$response = $this->router->pathFor('cadastroprod');
 									
-									
-									$result = array("result","1");
+								/* 	$result = array("result","1");
 									
 								 	$app = new \Slim\Slim();
 									$app->response;
 									$app->response->setStatus(400);
 									$app->response->headers->set('Content-Type', 'application/json');
 									
-									$app->response->write($result);
+									$app->response->write($result); */
 									
 									/* $res = new \Slim\Http\Response();
 									$res->setStatus(302);
