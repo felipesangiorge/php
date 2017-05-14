@@ -1,5 +1,6 @@
 <?php
-use Slim\Http\Response;
+use Slim\Http\Response as Response;
+
 
 require 'inc/configuration.php';
 require 'inc/Slim-2.x/Slim/Slim.php';
@@ -339,11 +340,31 @@ $app ->delete("/carrinho-produto",function(){
 									
 								}else{
 									
+									
+									
 									$result = array("result","1");
 									
-									header("Content-Type: application/json");
-									echo json_encode($result);
-									exit;
+								 	$app = new \Slim\Slim();
+									$app->response;
+									$app->response->setStatus(400);
+									$app->response->headers->set('Content-Type', 'application/json');
+									
+									$app->response->write($result);
+									
+									/* $res = new \Slim\Http\Response();
+									$res->setStatus(302);
+									$res->write('You made a bad request');
+									$res->headers->set('Content-Type', 'text/plain');  */
+									
+								/* 	$response = new Response();
+									
+									$result = array("result","1");
+									
+									$result = $response->withStatus(302);
+									
+									header("Location: http://localhost/projetohtml/admin/cadastroprod",json_encode($result));
+								
+									exit; */
 									
 									
 	
@@ -351,9 +372,9 @@ $app ->delete("/carrinho-produto",function(){
 										
 								
 								
-								header("Location: http://localhost/projetohtml/admin/cadastroprod");
+								//header("Location: http://localhost/projetohtml/admin/cadastroprod");
 								
-								exit;
+								//exit;
 								
 							});
 
