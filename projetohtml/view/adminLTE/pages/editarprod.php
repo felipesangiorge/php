@@ -483,33 +483,57 @@
     <!-- Main content -->
 
  <form>
+
+ <table id="main-table-editaprod-th">
+                 
+                        <tr>
+                                <th>Id</th>
+                                <th>Nome Curto</th>
+                                <th>Nome Longo</th>
+                                <th>Código Interno</th>
+                                <th>Categoria</th>
+                                <th>Preço</th>
+                                <th>Peso</th>
+                                <th>Largura (cm)</th>
+                                <th>Altura (cm)</th>
+                                <th>Quantidade Estoque</th>
+                                <th>Preço Promorcional</th>
+                                <th>Foto</th>
+                                <th>Visivel</th>
+                                <th>Comprimento (cm)</th>
+                                <th>&nbsp;</th>
+                         </tr>
+                         
+  </table>
+
 <div id="main-table-editaprod">
          
-        	   <table>
-        			     
-          	            <tr>
-          	                    <th>Id</th>
-          	                    <th>Nome Curto</th>
-          	                    <th>Nome Longo</th>
-          	                    <th>Código Interno</th>
-          	                    <th>Categoria</th>
-          	                    <th>Preço</th>
-          	                    <th>Peso</th>
-          	                    <th>Largura (cm)</th>
-          	                    <th>Altura (cm)</th>
-          	                    <th>Quantidade Estoque</th>
-          	                    <th>Preço Promorcional</th>
-          	                    <th>Foto</th>
-          	                    <th>Visivel</th>
-          	                    <th>Comprimento (cm)</th>
-          	                    <th>&nbsp;</th>
-          	  				   </tr>
-            				
-            			
-            					 <tr id="tabela-produtos">
-            				 	
-            				 	</tr>
-            	
+        	   <table id="table-editaprod">   
+
+        			        <thead>
+                            <tr>
+                                    <th>Id</th>
+                                    <th>Nome Curto</th>
+                                    <th>Nome Longo</th>
+                                    <th>Código Interno</th>
+                                    <th>Categoria</th>
+                                    <th>Preço</th>
+                                    <th>Peso</th>
+                                    <th>Largura (cm)</th>
+                                    <th>Altura (cm)</th>
+                                    <th>Quantidade Estoque</th>
+                                    <th>Preço Promorcional</th>
+                                    <th>Foto</th>
+                                    <th>Visivel</th>
+                                    <th>Comprimento (cm)</th>
+                                    <th>&nbsp;</th>
+                             </tr>
+                      </thead>
+                      <tbody>
+                					 <tr id="tabela-produtos">
+    	 	
+                				 	</tr>
+            	       </tbody>
           				 
              </table>
 
@@ -765,8 +789,11 @@ $(document).ready(function(){
   	$.getJSON('http://localhost/projetohtml/admin/editarprod-todos',function(data){
    		$.each(data, function(k, v){
 
-   			for(i=0; i < data.length;i+=5){
-   				$('#tabela-produtos').append("<tr><td>"+v.id_prod+"<td>"+
+   			
+
+        for(i=0; i < data.length;i+=5){
+        
+        $('#tabela-produtos').append("<tr><td>"+v.id_prod+"<td>"+
    												"<td>"+'<input type="text" value='+v.nome_prod_curto+'></input>'+"<td>"+
 							   					"<td>"+'<input type="text" value='+v.nome_prod_longo+'></input>'+"<td>"+
 							   					"<td>"+'<input type="number" class="table-editaprod-number2" value='+v.codigo_interno+'></input>'+"<td>"+
