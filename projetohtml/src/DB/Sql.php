@@ -12,6 +12,7 @@ class SqlAdm extends PDO{
 		
 	}
 	
+	
 	private function setParams($statement, $parameters = array()){
 		
 		foreach ($parameters as $key => $value){
@@ -38,6 +39,7 @@ class SqlAdm extends PDO{
 		return $stmt;
 		
 	}
+	
 	
 	public function select($rawQuery, $params = array()):array{
 		

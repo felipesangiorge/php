@@ -261,17 +261,17 @@ $app ->delete("/carrinho-produto",function(){
 
 // ADMINISTRAÇÃO ---------------
 
-	$app->get('/admin',function () {
+$app->get('/admin',function () {
 		
 		User::verifyLogin($_SESSION['usuario'],$_SESSION['inadmin']);
 		
 	});
 		
-		$app->get('/admin/login',function () {
+$app->get('/admin/login',function () {
 			require_once("view/adminlte/pages/login.php");
 		});
 			
-			$app->post('/admin/login',function () {
+$app->post('/admin/login',function () {
 				
 				
 				$user = new User();
@@ -282,35 +282,50 @@ $app ->delete("/carrinho-produto",function(){
 				
 				exit;
 			});
+			
 				
-				$app->get('/admin/cadastroprod',function () {
+				
+$app->get('/admin/cadastroprod',function () {
 					
 					
 					require_once("view/adminlte/pages/cadastroprod.php");
 					
-				})->setName('cadastroprod');
+				});
 					
-					
-					
+$app->get('/admin/editarprod-todos',function () {
 						
-						$app->get('/admin/cadastroprod-last-id', function(){
+						$sql = new Sql();
+						
+						$data = $sql->select('SELECT * FROM tb_produtos');
+						
+						echo json_encode($data);
+						
+				});
+
+$app->get('/admin/editarprod',function () {
+
+	require_once("view/adminlte/pages/editarprod.php");
+	
+});
+					
+$app->get('/admin/cadastroprod-last-id', function(){
 							
-							$sql = new SqlAdm();
+				$sql = new SqlAdm();
 							
-							$data = $sql->select("SELECT id_prod FROM tb_produtos ORDER BY id_prod DESC LIMIT 1");
+				$data = $sql->select("SELECT id_prod FROM tb_produtos ORDER BY id_prod DESC LIMIT 1");
 							
-							echo json_encode($data);
+				echo json_encode($data);
 							
-						});
+				});
 							
-							$app->post('/admin/cadastroprod',function($request,$response) use ($app){
+$app->post('/admin/cadastroprod',function($request,$response) use ($app){
 								
-								$sql = new SqlAdm();
+				$sql = new SqlAdm();
 								
-								$results = $sql->select("SELECT id_prod FROM tb_produtos WHERE id_prod = :id_prod",array(
+				$results = $sql->select("SELECT id_prod FROM tb_produtos WHERE id_prod = :id_prod",array(
 										
-										":id_prod"=>$_POST["id_prod"]
-								));
+				":id_prod"=>$_POST["id_prod"]
+				));
 								
 								if(empty($results)){
 									
