@@ -1,0 +1,28 @@
+@font-face{
+	font-family: "Opensans";
+	src:url(../fonts/Open_Sans/OpenSans-Regular.ttf);
+	font-size: 1em;
+}
+body{width:100%}
+
+#main-table-editaprod{
+	max-width: 100%;
+	overflow: scroll
+	
+}
+
+#main-table-editaprod th, #main-table-editaprod td{
+
+	padding: 1px;
+}
+
+#main-table-editaprod input.table-editaprod-number{
+
+	width: 50px;
+}
+
+#main-table-editaprod input.table-editaprod-number2{
+
+	width: 90px;
+}
+
