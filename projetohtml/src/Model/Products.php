@@ -91,7 +91,7 @@ class Products{
 		
 	}
 	
-	public function getPeso($value){
+	public function setPeso($value){
 		
 		$this->peso = $value;
 		
@@ -135,7 +135,7 @@ class Products{
 		
 	}
 	
-	public function getPreco_promorcional($value){
+	public function setPreco_promorcional($value){
 		
 		$this->preco_promorcional = $value;
 		
@@ -146,7 +146,7 @@ class Products{
 		
 	}
 	
-	public function getFoto_principal($value){
+	public function setFoto_principal($value){
 		
 		$this->foto_principal = $value;
 		
@@ -241,6 +241,59 @@ class Products{
 										
 								));
 			
+		
+	}
+	
+	public function updateProd($id_prod,
+								$nome_prod_curto,
+								$nome_prod_longo,
+								$codigo_interno,
+								$id_cat,
+								$preco,
+								$peso,
+								$largura_centimetro,
+								$altura_centimetro,
+								$quantidade_estoque,
+								$preco_promorcional,
+								$foto_principal,
+								$visivel,
+								$comprimento_centimetro){
+		
+				$sql = new SqlAdm();
+				
+				$sql ->query("UPDATE degustando_shop.tb_produtos SET nome_prod_curto=:nome_prod_curto,
+																		nome_prod_longo=:nome_prod_longo,
+																		codigo_interno=:codigo_interno,
+																		id_cat=:id_cat,
+																		preco=:preco,
+																		peso=:peso,
+																		largura_centimetro=:largura_centimetro,
+																		altura_centimetro=:altura_centimetro,
+																		quantidade_estoque=:quantidade_estoque,
+																		preco_promorcional=:preco_promorcional,
+																		foto_principal=:foto_principal,
+																		visivel=:visivel,
+																		comprimento_centimetro=:comprimento_centimetro 
+
+																		WHERE id_prod=:id_prod",array(
+																				
+																"id_prod"=>$id_prod,
+																"nome_prod_curto"=>$nome_prod_curto,
+																"nome_prod_longo"=>$nome_prod_longo,
+																"codigo_interno"=>$codigo_interno,
+																"id_cat"=>$id_cat,
+																"preco"=>$preco,
+																"peso"=>$peso,
+																"largura_centimetro"=>$largura_centimetro,
+																"altura_centimetro"=>$altura_centimetro,
+																"quantidade_estoque"=>$quantidade_estoque,
+																"preco_promorcional"=>$preco_promorcional,
+																"foto_principal"=>$foto_principal,
+																"visivel"=>$visivel,
+																"comprimento_centimetro"=>$comprimento_centimetro
+																				
+																		));
+		
 		
 	}
 	

@@ -523,7 +523,13 @@
                   
       </div>
 
-        <input type="button" value="Editar" name="">
+        <div class="form-group">
+    
+        <input type="button" id="editarProdForm" class="form-control" value="Editar" name="editar">
+       
+      </div>
+
+        <
 
 </form>
   <!-- /.content-wrapper -->
@@ -776,20 +782,21 @@ $(document).ready(function(){
 
        
         
-        $('#tabela-produtos').append("<tr><td id='id_prod'>"+v.id_prod+"<td>"+
-   												"<td>"+'<input type="text" value='+v.nome_prod_curto+'></input>'+"<td>"+
-							   					"<td>"+'<input type="text" value='+v.nome_prod_longo+'></input>'+"<td>"+
-							   					"<td>"+'<input type="number" class="table-editaprod-number2" value='+v.codigo_interno+'></input>'+"<td>"+
-							   					"<td>"+'<input type="text" class="table-editaprod-number" value='+v.id_cat+'></input>'+"<td>"+
-							   					"<td>"+'<input type="number" class="table-editaprod-number2" value='+v.preco+'></input>'+"<td>"+
-							   					"<td>"+'<input type="number" class="table-editaprod-number" value='+v.peso+'></input>'+"<td>"+
-							   					"<td>"+'<input type="number" class="table-editaprod-number" value='+v.largura_centimetro+'></input>'+"<td>"+
-							   					"<td>"+'<input type="number" class="table-editaprod-number" value='+v.altura_centimetro+'></input>'+"<td>"+
-							   					"<td>"+'<input type="number" class="table-editaprod-number" value='+v.quantidade_estoque+'></input>'+"<td>"+
-							   					"<td>"+'<input type="number" class="table-editaprod-number2" value='+v.preco_promorcional+'></input>'+"<td>"+
-							   					"<td>"+'<input type="file" value='+v.foto_principal+'></input>'+"<td>"+
-							   					"<td>"+'<input type="text" value='+v.visivel+'></input>'+"<td>"+
-							   					"<td>"+'<input type="text" class="table-editaprod-number" value='+v.comprimento_centimetro+'></input>'+"<td></tr>")
+        $('#tabela-produtos').append("<tr><td id='id_prod' name='id_prod'>"+v.id_prod+"<td>"+
+   												"<td>"+'<input type="text" name="nome_prod_curto" value='+v.nome_prod_curto+'></input>'+"<td>"+
+							   					"<td>"+'<input type="text" name="nome_prod_longo" value='+v.nome_prod_longo+'></input>'+"<td>"+
+							   					"<td>"+'<input type="number" name="codigo_interno" class="table-editaprod-number2" value='+v.codigo_interno+'></input>'+"<td>"+
+							   					"<td>"+'<input type="text" name="id_cat" class="table-editaprod-number" value='+v.id_cat+'></input>'+"<td>"+
+							   					"<td>"+'<input type="number" name="preco" class="table-editaprod-number2" value='+v.preco+'></input>'+"<td>"+
+							   					"<td>"+'<input type="number" name="peso" class="table-editaprod-number" value='+v.peso+'></input>'+"<td>"+
+							   					"<td>"+'<input type="number" name="largura_centimetro" class="table-editaprod-number" value='+v.largura_centimetro+'></input>'+"<td>"+
+							   					"<td>"+'<input type="number" name="altura_centimetro" class="table-editaprod-number" value='+v.altura_centimetro+'></input>'+"<td>"+
+							   					"<td>"+'<input type="number" name="quantidade_estoque" class="table-editaprod-number" value='+v.quantidade_estoque+'></input>'+"<td>"+
+							   					"<td>"+'<input type="number" name="preco_promorcional" class="table-editaprod-number2" value='+v.preco_promorcional+'></input>'+"<td>"+
+							   					"<td>"+'<input type="file" name="foto_principal" value='+v.foto_principal+'></input>'+"<td>"+
+							   					"<td>"+'<input type="text" name="visivel" value='+v.visivel+'></input>'+"<td>"+
+							   					"<td>"+'<input type="text" name="comprimento_centimetro" class="table-editaprod-number" value='+v.comprimento_centimetro+'></input>'+"<td>"+
+                          "<td>"+'<input type="button" id="editarProdForm" value="Editar" name="editar"></input>'+"<td></tr>")
 
    				
    			
@@ -804,43 +811,50 @@ $(document).ready(function(){
    });
 
 
+ $(function(){
+
+    $("#editarProdForm").on("click",function(){
+
+        alert("teste")
+    });
+
+     $("#sendFormEditarprod").click(function(){
+
+        alert("testeForm")
+    });
+
+
+  });
+
+
 var request;
 
 
-$("#sendFormEditarprod").submit(function(event){
+jQuery(document).ready(function(){
+    jQuery('#sendFormEditarprod').submit(function(){
+      var dados = jQuery( this ).serialize();
 
-    event.preventDefault();
-    if (request) {
-        request.abort();
-    }
-    var $form = $(this);
-    var $inputs = $form.find("input, select, button, textarea");
-    var serializedData = $form.serialize();
-    $inputs.prop("disabled", true);
-    request = $.ajax({
-        url: "http://localhost/projetohtml/admin/editarprod",
-        type: "put",
-        data: serializedData
+                jQuery.ajax({
+                  type: "POST",
+                  url: "http://localhost/projetohtml/admin/editarprod",
+                  data: dados,
+                  success: function( data ) {
+                    console.log("dados enviados");
+
+                  },
+                  error: function (result) {
+          
+                    console.log(result);
+                    } 
+
+
+
+      });
+
+      
+      return false;
     });
-
-
-    request.done(function (response, textStatus, jqXHR){
-  
-        console.log("Dados enviados");
-        console.log(response, textStatus, jqXHR);
-    });
-
-   
-    request.fail(function (jqXHR, textStatus, errorThrown){
-       
-        console.error(
-            "Error ao enviar: "+
-            textStatus, errorThrown
-        );
-    });
-
-   
-});
+  });
 
 
 

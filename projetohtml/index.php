@@ -358,47 +358,32 @@ $app->post('/admin/cadastroprod',function($response) use ($app){
 									
 									echo json_encode($result);
 									
-								/* 	$result = array("result","1");
-									
-								 	$app = new \Slim\Slim();
-									$app->response;
-									$app->response->setStatus(400);
-									$app->response->headers->set('Content-Type', 'application/json');
-									
-									$app->response->write($result); */
-									
-									/* $res = new \Slim\Http\Response();
-									$res->setStatus(302);
-									$res->write('You made a bad request');
-									$res->headers->set('Content-Type', 'text/plain');  */
-									
-								/* 	$response = new Response();
-									
-									$result = array("result","1");
-									
-									$result = $response->withStatus(302);
-									
-									header("Location: http://localhost/projetohtml/admin/cadastroprod",json_encode($result));
-								
-									exit; */
-									
-									
-	
+				
 								}
-										
-								
-								
-								//header("Location: http://localhost/projetohtml/admin/cadastroprod");
-								
-								//exit;
+				
 								
 							});
 
 
-	$app->put('/admin/editarprod',function($request,$response) use ($app){
+	$app->post('/admin/editarprod',function($request,$response) use ($app){
 		
+		$products = new Products();
 		
-	echo "teste";
+		$products->updateProd($_POST["id_prod"],
+				$_POST["nome_prod_curto"],
+				$_POST["nome_prod_longo"],
+				$_POST["codigo_interno"],
+				$_POST["id_cat"],
+				$_POST["preco"],
+				$_POST["peso"],
+				$_POST["largura_centimetro"],
+				$_POST["altura_centimetro"],
+				$_POST["quantidade_estoque"],
+				$_POST["preco_promorcional"],
+				$_POST["foto_principal"],
+				$_POST["visivel"],
+				$_POST["comprimento_centimetro"]);
+	
 		
 	});
 
