@@ -816,6 +816,32 @@ $(document).ready(function(){
     $("#editarProdForm").on("click",function(){
 
         alert("teste")
+
+        jQuery(document).ready(function(){
+    jQuery('#sendFormEditarprod').submit(function(){
+      var dados = jQuery( this ).serialize();
+
+                jQuery.ajax({
+                  type: "POST",
+                  url: "http://localhost/projetohtml/admin/editarprod",
+                  data: dados,
+                  success: function( data ) {
+                    console.log("dados enviados");
+
+                  },
+                  error: function (result) {
+          
+                    console.log(result);
+                    } 
+
+
+
+      });
+
+      
+      return false;
+    });
+  });
     });
 
      $("#sendFormEditarprod").click(function(){

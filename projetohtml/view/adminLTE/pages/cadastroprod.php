@@ -489,58 +489,58 @@
       <div class="form-group" ng-repeat="idproduct in idproducts">
 
       <h4 id="idproducth4">Id Produto:</h4>
-          <input type="number" id="idproduct" class="form-control" ng-controller="ecommerce-productid" placeholder="Id produto" name="id_prod">
+          <input type="number" id="idproduct" class="form-control"  ng-controller="ecommerce-productid" placeholder="Id produto" name="id_prod">
          
         </div>
 
       <div class="form-group">
       <h4 id="">Nome Curto:</h4>
-        <input type="text" class="form-control" placeholder="Nome Longo" name="nome_prod_curto">
+        <input type="text" id="nome_prod_curto" class="form-control" placeholder="Nome Curto" name="nome_prod_curto">
        
       </div>
 
        <div class="form-group">
       <h4 id="">Nome Longo:</h4>
-        <input type="text" class="form-control" placeholder="Nome Longo" name="nome_prod_longo">
+        <input type="text" id="nome_prod_longo" class="form-control" placeholder="Nome Longo" name="nome_prod_longo">
        
       </div>
 
       <div class="form-group">
       <h4 id="">Codigo interno:</h4>
-        <input type="number" min="1" step="any" class="form-control" placeholder="Codigo interno" name="codigo_interno">
+        <input type="number" id="codigo_interno" min="1" step="any" class="form-control" placeholder="Codigo interno" name="codigo_interno">
         
       </div>
 
       <div class="form-group">
       <h4 id="">Id Categoria:</h4>
-        <input type="number" min="1" step="any" class="form-control" placeholder="id categoria" name="id_cat">
+        <input type="number" id="id_cat" min="1" step="any" class="form-control" placeholder="id categoria" name="id_cat">
        
       </div>
       <div class="form-group">
       <h4 id="">Preço:</h4>
-        <input type="number" min="1" step="any" class="form-control" placeholder="preço" name="preco">
+        <input type="number" id="preco" min="1" step="any" class="form-control" placeholder="preço" name="preco">
         
       </div>
 
       <div class="form-group">
       <h4 id="">Peso:</h4>
-        <input type="number" min="1" step="any" class="form-control" placeholder="peso" name="peso">
+        <input type="number" id="peso" min="1" step="any" class="form-control" placeholder="peso" name="peso">
        
       </div>
       <div class="form-group">
       <h4 id="">Largura Centimetros:</h4>
-        <input type="number" min="0.1" step="any" class="form-control" placeholder="Largura Centimetros" name="largura_centimetro">
+        <input type="number" id="largura_centimetro" min="0.1" step="any" class="form-control" placeholder="Largura Centimetros" name="largura_centimetro">
         
       </div>
 
       <div class="form-group">
       <h4 id="">Altura Centimetros:</h4>
-        <input type="number" class="form-control" placeholder="Altura Centimetros" name="altura_centimetro"> 
+        <input type="number" id="altura_centimetro" class="form-control" placeholder="Altura Centimetros" name="altura_centimetro"> 
       </div>
 
       <div class="form-group">
       <h4 id="">Quantidade Estoque:</h4>
-        <input type="number" class="form-control" placeholder="Quantidade Estoque" name="quantidade_estoque"> 
+        <input type="number" id="quantidade_estoque" class="form-control" placeholder="Quantidade Estoque" name="quantidade_estoque"> 
       </div>
 
       <div class="form-group">
@@ -779,31 +779,26 @@
 ?>
 
 <script>
- /*$(function(){
 
- var url='http://localhost/projetoecomerce/admin/cadastroprod-last-id'
+$("#nome_prod_curto").on("focusout",function() {
 
- var listid = $('#idproduct');
+  if( !$(this).val() ) {
 
-$(document).ready(function(){
-	
-	$.ajax({
+         alert("Coloque um valor.");
 
-		url:url,
-		method:'GET',
-		type:"JSON"
+    }
 
-	}).done(function(idprod){
+});
 
+$("#nome_prod_longo").on("focusout",function() {
 
-		listid.html("<h1>"+idprod+"</h1>");
-	});
+  if( !$(this).val() ) {
 
-		return false;
- });
-		action="http://localhost/projetoecomerce/admin/cadastroprod"
+         alert("Coloque um valor.");
 
- });*/
+    }
+
+});
 
  $(document).ready(function(){
 
@@ -823,47 +818,6 @@ $(document).ready(function(){
    });
 
 
-/*var request;
-
-
-$("sendFormCadastroprod").submit(function(event){
-
-    event.preventDefault();
-    if (request) {
-        request.abort();
-    }
-    var $form = $(this);
-    var $inputs = $form.find("input, select, button, textarea");
-    var serializedData = $form.serialize();
-    $inputs.prop("disabled", true);
-    request = $.ajax({
-        url: "http://localhost/projetohtml/admin/cadastroprod",
-        type: "post",
-        data: serializedData
-    });
-
-
-    request.done(function (response, textStatus, jqXHR){
-  
-        console.log("Dados enviados");
-        console.log(response, textStatus, jqXHR);
-    });
-
-   
-    request.fail(function (jqXHR, textStatus, errorThrown){
-       
-        console.error(
-            "Error ao enviar: "+
-            textStatus, errorThrown
-        );
-    });
-
-    request.always(function () {
-       
-        $inputs.prop("disabled", false);
-    });
-
-});*/
 
 
 jQuery(document).ready(function(){
@@ -877,7 +831,11 @@ jQuery(document).ready(function(){
                   success: function( data ) {
                     console.log("dados enviados");
 
-                  },error: function (result) {
+                    alert("Produto Cadastrado Com Sucesso!");
+                    window.location.reload();
+
+                  },
+                  error: function (result) {
           
                     console.log(result);
                     } 

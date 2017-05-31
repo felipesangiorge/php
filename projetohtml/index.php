@@ -334,6 +334,7 @@ $app->post('/admin/cadastroprod',function($response) use ($app){
 									$products = new Products();
 									
 					
+					
 									$products -> insert( 	$_POST["id_prod"],
 											$_POST["nome_prod_curto"],
 											$_POST["nome_prod_longo"],
