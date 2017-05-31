@@ -318,7 +318,7 @@ $app->get('/admin/cadastroprod-last-id', function(){
 							
 				});
 							
-$app->post('/admin/cadastroprod',function($request,$response) use ($app){
+$app->post('/admin/cadastroprod',function($response) use ($app){
 								
 				$sql = new SqlAdm();
 								
@@ -354,7 +354,9 @@ $app->post('/admin/cadastroprod',function($request,$response) use ($app){
 									
 								}else{
 									
-									$response = $this->router->pathFor('cadastroprod');
+									$result = array("result","jacadastrado");
+									
+									echo json_encode($result);
 									
 								/* 	$result = array("result","1");
 									
@@ -391,6 +393,14 @@ $app->post('/admin/cadastroprod',function($request,$response) use ($app){
 								//exit;
 								
 							});
+
+
+	$app->put('/admin/editarprod',function($request,$response) use ($app){
+		
+		
+	echo "teste";
+		
+	});
 
 $app->run();
 

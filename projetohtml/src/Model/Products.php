@@ -4,116 +4,156 @@ require_once ('src/DB/Sql.php');
 
 class Products{
 	
-	private $idproduct;
-	private $desproduct;
-	private $vlprice;
-	private $vlwidth;
-	private $vlheight;
-	private $vllength;
-	private $vlweight;
+	private $id_prod;
+	private $nome_prod_curto;
+	private $nome_prod_longo;
+	private $codigo_interno;
+	private $id_cat;
+	private $preco;
+	private $peso;
+	private $largura_centimetro;
+	private $altura_centimetro;
+	private $quantidade_estoque;
+	private $preco_promorcional;
+	private $foto_principal;
 	private $visivel;
-	private $dtregister;
+	private $comprimento_centimetro;
 	
 	
-	public function getIdproduct(){
+	public function getId_prod(){	
+		return $this ->id_prod;	
+	}
+
+	public function setId_prod($value){
 		
-		return $this -> idproduct;
+		$this->id_prod = $value;
 		
 	}
 	
-	public function setIdproduct($value){
+	public function getNome_prod_curto(){
 		
-		$this->idproduct = $value;
-		
-	}
-	
-	public function getDesproduct(){
-		
-		return $this -> desproduct;
+		return $this ->nome_prod_curto;
 		
 	}
 	
-	public function setIdDesproduct($value){
+	public function setNome_prod_curto($value){
 		
-		$this->desproduct = $value;
+		$this->nome_prod_curto = $value;
+		
+	}
+	public function getNome_prod_longo(){
+		
+		return $this ->nome_prod_longo;
 		
 	}
 	
-	public function getVlprice(){
+	public function setNome_prod_longo($value){
 		
-		return $this -> vlprice;
+		$this->nome_prod_longo = $value;
+		
+	}
+	public function getCodigo_interno(){
+		
+		return $this ->codigo_interno;
 		
 	}
 	
-	public function setVlprice($value){
+	public function setCodigo_interno($value){
 		
-		$this->vlprice = $value;
+		$this->codigo_interno = $value;
+		
+	}
+	public function getId_cat(){
+		
+		return $this ->id_cat;
 		
 	}
 	
-	public function getVlwidth(){
+	public function setId_cat($value){
 		
-		return $this -> vlwidth;
+		$this->id_cat = $value;
+		
+	}
+	public function getPreco(){
+		
+		return $this ->preco;
 		
 	}
 	
-	public function setVlwidth($value){
+	public function setPreco($value){
 		
-		$this->vlwidth = $value;
+		$this->preco = $value;
+		
+	}
+	public function getPeso(){
+		
+		return $this ->peso;
 		
 	}
 	
-	public function getVlheight(){
+	public function getPeso($value){
 		
-		return $this -> vlheight;
+		$this->peso = $value;
+		
+	}
+	public function getLargura_centimetro(){
+		
+		return $this ->largura_centimetro;
 		
 	}
 	
-	public function setVlheight($value){
+	public function setLargura_centimetro($value){
 		
-		$this->vlheight = $value;
+		$this->largura_centimetro = $value;
+		
+	}
+	public function getAltura_centimetro(){
+		
+		return $this ->altura_centimetro;
 		
 	}
 	
-	public function getVllength(){
+	public function setAltura_centimetro($value){
 		
-		return $this -> vllength;
+		$this->altura_centimetro = $value;
+		
+	}
+	public function getQuantidade_estoque(){
+		
+		return $this ->quantidade_estoque;
 		
 	}
 	
-	public function setVllength($value){
+	public function setQuantidade_estoque($value){
 		
-		$this->vllength = $value;
+		$this->quantidade_estoque = $value;
+		
+	}
+	public function getPreco_promorcional(){
+		
+		return $this ->preco_promorcional;
 		
 	}
 	
-	public function getVlweight(){
+	public function getPreco_promorcional($value){
 		
-		return $this -> vlweight;
+		$this->preco_promorcional = $value;
+		
+	}
+	public function getFoto_principal(){
+		
+		return $this ->foto_principal;
 		
 	}
 	
-	public function setVlweight($value){
+	public function getFoto_principal($value){
 		
-		$this->vlweight = $value;
-		
-	}
-	
-	public function getDesurl(){
-		
-		return $this -> desurl;
+		$this->foto_principal = $value;
 		
 	}
-	
-	public function setDesurl($value){
-		
-		$this->desurl = $value;
-		
-	}
-	
 	public function getVisivel(){
 		
-		return $this -> visivel;
+		return $this ->visivel;
 		
 	}
 	
@@ -122,6 +162,19 @@ class Products{
 		$this->visivel = $value;
 		
 	}
+	
+	public function getComprimento_centimetro(){
+		
+		return $this ->comprimento_centimetro;
+		
+	}
+	
+	public function setComprimento_centimetro($value){
+		
+		$this->comprimento_centimetro = $value;
+		
+	}
+	
 	
 	
 	public function insert(		$id_prod,

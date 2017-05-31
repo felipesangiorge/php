@@ -506,41 +506,24 @@
                          
   </table>
 
-<div id="main-table-editaprod">
-         
-        	   <table id="table-editaprod">   
+<form id="sendFormEditarprod"  method="put">
+    <div id="main-table-editaprod">
+             
+            	   <table>   
 
-        			        <thead>
-                            <tr>
-                                    <th>Id</th>
-                                    <th>Nome Curto</th>
-                                    <th>Nome Longo</th>
-                                    <th>Código Interno</th>
-                                    <th>Categoria</th>
-                                    <th>Preço</th>
-                                    <th>Peso</th>
-                                    <th>Largura (cm)</th>
-                                    <th>Altura (cm)</th>
-                                    <th>Quantidade Estoque</th>
-                                    <th>Preço Promorcional</th>
-                                    <th>Foto</th>
-                                    <th>Visivel</th>
-                                    <th>Comprimento (cm)</th>
-                                    <th>&nbsp;</th>
-                             </tr>
-                      </thead>
-                      <tbody>
-                					 <tr id="tabela-produtos">
-    	 	
-                				 	</tr>
-            	       </tbody>
-          				 
-             </table>
+            			      
+                          <tbody>
+                    					 <tr id="tabela-produtos">
+        	 	
+                    				 	</tr>
+                	       </tbody>
+              				 
+                 </table>
 
-              
-  </div>
+                  
+      </div>
 
-    <input type="button" value="Editar" name="">
+        <input type="button" value="Editar" name="">
 
 </form>
   <!-- /.content-wrapper -->
@@ -791,9 +774,9 @@ $(document).ready(function(){
 
    			
 
-        for(i=0; i < data.length;i+=5){
+       
         
-        $('#tabela-produtos').append("<tr><td>"+v.id_prod+"<td>"+
+        $('#tabela-produtos').append("<tr><td id='id_prod'>"+v.id_prod+"<td>"+
    												"<td>"+'<input type="text" value='+v.nome_prod_curto+'></input>'+"<td>"+
 							   					"<td>"+'<input type="text" value='+v.nome_prod_longo+'></input>'+"<td>"+
 							   					"<td>"+'<input type="number" class="table-editaprod-number2" value='+v.codigo_interno+'></input>'+"<td>"+
@@ -808,7 +791,7 @@ $(document).ready(function(){
 							   					"<td>"+'<input type="text" value='+v.visivel+'></input>'+"<td>"+
 							   					"<td>"+'<input type="text" class="table-editaprod-number" value='+v.comprimento_centimetro+'></input>'+"<td></tr>")
 
-   				}
+   				
    			
    				
 
@@ -824,7 +807,7 @@ $(document).ready(function(){
 var request;
 
 
-$("sendFormCadastroprod").submit(function(event){
+$("#sendFormEditarprod").submit(function(event){
 
     event.preventDefault();
     if (request) {
@@ -835,8 +818,8 @@ $("sendFormCadastroprod").submit(function(event){
     var serializedData = $form.serialize();
     $inputs.prop("disabled", true);
     request = $.ajax({
-        url: "http://localhost/projetohtml/admin/cadastroprod",
-        type: "post",
+        url: "http://localhost/projetohtml/admin/editarprod",
+        type: "put",
         data: serializedData
     });
 
@@ -856,11 +839,7 @@ $("sendFormCadastroprod").submit(function(event){
         );
     });
 
-    request.always(function () {
-       
-        $inputs.prop("disabled", false);
-    });
-
+   
 });
 
 

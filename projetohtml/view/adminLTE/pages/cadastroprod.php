@@ -823,7 +823,7 @@ $(document).ready(function(){
    });
 
 
-var request;
+/*var request;
 
 
 $("sendFormCadastroprod").submit(function(event){
@@ -863,7 +863,33 @@ $("sendFormCadastroprod").submit(function(event){
         $inputs.prop("disabled", false);
     });
 
-});
+});*/
+
+
+jQuery(document).ready(function(){
+    jQuery('#sendFormCadastroprod').submit(function(){
+      var dados = jQuery( this ).serialize();
+
+                jQuery.ajax({
+                  type: "POST",
+                  url: "http://localhost/projetohtml/admin/cadastroprod",
+                  data: dados,
+                  success: function( data ) {
+                    console.log("dados enviados");
+
+                  },error: function (result) {
+          
+                    console.log(result);
+                    } 
+
+
+
+      });
+
+      
+      return false;
+    });
+  });
 
 
 
