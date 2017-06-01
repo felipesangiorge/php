@@ -151,9 +151,57 @@ class User{
 		
 	
 	}
+	
+	
+	public static function register($email,$login,$password,$tel,$inadmin){
+	    
+	    $sql = new Sql();
+	    
+	    $results = $sql -> select("SELECT * FROM tb_users WHERE deslogin = :LOGIN ",array(
+	        
+	        ":LOGIN"=>$login,
+	        
+	    ));
+	    
+	    
+	    if (count($results) > 0){
+	        
+	        throw new Exception("Usuário já cadastrado");
+	        
+	    }else{
+	        
+	        $sqlAdm = new SqlAdm();
+	       
+	        $sqlAdm -> query("INSERT INTO tb_persons (desperson,desemail,nrphone) VALUES (:login,:email,:tel)",array(
+	            
+	               ":login"=>$login,
+	               ":email"=>$email,
+	               ":tel"=>$tel,
+	            
+	        ));
+	        
+	       $idperson = $sqlAdm -> select("SELECT idperson FROM tb_persons WHERE desperson = :login",array(
+	            
+	            ":login"=>$login,
+            
+	        ));
+	        
+	        $sqlAdm -> query("INSERT INTO tb_users (idperson,deslogin,despassword,inadmin) VALUES (:idperson,:login,:password,:inadmin)",array(
+	            
+	            ":idperson"=>$idperson,
+	            ":login"=>$login,
+	            ":password"=>$email,
+	            ":inadmin"=>$inadmin,
+	            
+	        ));
+	        
+	    }
+	    
+	    
+	}
 			
 		
-	}
+}
 	
 
 

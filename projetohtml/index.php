@@ -270,27 +270,46 @@ $app->get('/admin',function () {
 $app->get('/admin/login',function () {
 			require_once("view/adminlte/pages/login.php");
 		});
+
+$app->get('/admin/register',function () {
+            
+        require_once("view/adminlte/pages/register.php");
+        
+    });
+
+$app->post('/admin/register',function ($request,$response) {
+        
+        
+        $user = new User();
+        
+        $user -> register($_POST["email"],$_POST["login"], $_POST["password"],$_POST["tel"],$_POST["inadmin"]);
+        
+        //header("Location: /projetoecomerce/admin");
+        
+        exit;
+    });
+
 			
 $app->post('/admin/login',function () {
 				
 				
-				$user = new User();
+	$user = new User();
 				
-				$user -> login($_POST["login"], $_POST["password"]);
+	$user -> login($_POST["login"], $_POST["password"]);
 				
-				header("Location: /projetoecomerce/admin");
+	//header("Location: /projetoecomerce/admin");
 				
-				exit;
-			});
+	exit;
+});
 			
 				
 				
 $app->get('/admin/cadastroprod',function () {
 					
 					
-					require_once("view/adminlte/pages/cadastroprod.php");
+require_once("view/adminlte/pages/cadastroprod.php");
 					
-				});
+});
 					
 $app->get('/admin/editarprod-todos',function () {
 						
