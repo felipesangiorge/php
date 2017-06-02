@@ -110,10 +110,10 @@
                   url: "http://localhost/projetohtml/admin/register",
                   data: dados,
                   success: function( data ) {
-                    console.log("dados enviados");
-
-                    alert("Produto Cadastrado Com Sucesso!");
-                    window.location.reload();
+                    console.log("dados enviados/ resposta:");
+                    console.log(data);
+                    alert("Usuario Cadastrado Com Sucesso!");
+                   /* window.location.reload();*/
 
                   },
                   error: function (result) {
@@ -129,6 +129,11 @@
       return false;
     });
   });
+
+
+
+   
+
 </script>
 </body>
 </html>

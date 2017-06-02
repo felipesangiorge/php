@@ -831,7 +831,21 @@ jQuery(document).ready(function(){
                   success: function( data ) {
                     console.log("dados enviados");
 
-                    alert("Produto Cadastrado Com Sucesso!");
+                    $.each(JSON.parse(data), function(k, v){
+
+                      console.log(v);
+
+                      if(v == "produtojacadastrado"){
+
+                        alert("Id já Cadastrado!");
+
+                      }else{
+                        alert("Produto Cadastrado Com Sucesso!");
+                      }
+
+                    });
+
+                    
                     window.location.reload();
 
                   },

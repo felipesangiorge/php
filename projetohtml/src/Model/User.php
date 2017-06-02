@@ -157,14 +157,14 @@ class User{
 	    
 	    $sql = new Sql();
 	    
-	    $results = $sql -> select("SELECT * FROM tb_users WHERE deslogin = :LOGIN ",array(
+	    $results = $sql -> select("SELECT deslogin FROM tb_users WHERE deslogin = :LOGIN ",array(
 	        
 	        ":LOGIN"=>$login,
 	        
 	    ));
 	    
 	    
-	    if (count($results) > 0){
+	    if ($results[0] == "teste"){
 	        
 	        throw new Exception("Usuário já cadastrado");
 	        
@@ -180,17 +180,21 @@ class User{
 	            
 	        ));
 	        
-	       $idperson = $sqlAdm -> select("SELECT idperson FROM tb_persons WHERE desperson = :login",array(
+	       
+	        
+	       $idperson = $sqlAdm -> select("SELECT idperson FROM tb_persons WHERE desperson like :login",array(
 	            
 	            ":login"=>$login,
             
 	        ));
+	       
+	       
 	        
-	        $sqlAdm -> query("INSERT INTO tb_users (idperson,deslogin,despassword,inadmin) VALUES (:idperson,:login,:password,:inadmin)",array(
+	        $sqlAdm -> query("INSERT INTO tb_users (idperson, deslogin, despassword, inadmin) VALUES (:idperson, :login,:password,:inadmin)",array(
 	            
 	            ":idperson"=>$idperson,
 	            ":login"=>$login,
-	            ":password"=>$email,
+	            ":password"=>$password,
 	            ":inadmin"=>$inadmin,
 	            
 	        ));

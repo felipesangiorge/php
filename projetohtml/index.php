@@ -282,9 +282,21 @@ $app->post('/admin/register',function ($request,$response) {
         
         $user = new User();
         
-        $user -> register($_POST["email"],$_POST["login"], $_POST["password"],$_POST["tel"],$_POST["inadmin"]);
+        if ($_POST["inadmin"] == "on"){
+            
+            $inadmin = 1;
+        }else {
+            
+            $inadmin = 0;
+        }
+        
+        $user -> register($_POST["email"],$_POST["login"], $_POST["password"],$_POST["tel"],$inadmin);
         
         //header("Location: /projetoecomerce/admin");
+        
+        $response = array("result","usuario-registrado");
+        
+        echo json_encode($response);
         
         exit;
     });
@@ -371,12 +383,15 @@ $app->post('/admin/cadastroprod',function($response) use ($app){
 									
 						
 									
+									$response = array("response","produtocadastradosucesso");
+									
+									echo json_encode($response);
 									
 								}else{
 									
-									$result = array("result","jacadastrado");
+								    $response = array("response","produtojacadastrado");
 									
-									echo json_encode($result);
+								    echo json_encode($response);
 									
 				
 								}
