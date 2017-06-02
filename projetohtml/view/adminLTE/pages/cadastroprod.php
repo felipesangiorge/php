@@ -486,10 +486,10 @@
 
     <form id="sendFormCadastroprod"  method="post">
 
-      <div class="form-group" ng-repeat="idproduct in idproducts">
+      <div class="form-group" id="formidproduct" ng-repeat="idproduct in idproducts">
 
       <h4 id="idproducth4">Id Produto:</h4>
-          <input type="number" id="idproduct" class="form-control"  ng-controller="ecommerce-productid" placeholder="Id produto" name="id_prod">
+          <input type="number" id="idproduct" class="form-control "  ng-controller="ecommerce-productid" placeholder="Id produto" name="id_prod">
          
         </div>
 
@@ -829,24 +829,26 @@ jQuery(document).ready(function(){
                   url: "http://localhost/projetohtml/admin/cadastroprod",
                   data: dados,
                   success: function( data ) {
+
                     console.log("dados enviados");
 
-                    $.each(JSON.parse(data), function(k, v){
+                    console.log(data);
+  
 
-                      console.log(v);
+                      if(data == "error"){
 
-                      if(v == "produtojacadastrado"){
-
-                        alert("Id já Cadastrado!");
+                        $('#formidproduct').addClass("has-warning");
+                        $('#formidproduct').val("Id já cadastrado!");
+                        alert("Já existe um produto cadastrado com esse ID");
+                       
 
                       }else{
+
                         alert("Produto Cadastrado Com Sucesso!");
+                         window.location.reload();
                       }
 
-                    });
-
-                    
-                    window.location.reload();
+                 
 
                   },
                   error: function (result) {

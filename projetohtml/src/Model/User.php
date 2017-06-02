@@ -122,9 +122,9 @@ class User{
 	
 	public static function login($login, $password){
 		
-		$sql = new Sql();
+		$sqlAdm = new SqlAdm();
 		
-		$results = $sql -> select("SELECT * FROM tb_users WHERE deslogin = :LOGIN AND despassword = :PASSWORD",array(
+		$results = $sqlAdm -> select("SELECT * FROM tb_users WHERE deslogin = :LOGIN AND despassword = :PASSWORD",array(
 				
 				":LOGIN"=>$login,
 				":PASSWORD"=>$password

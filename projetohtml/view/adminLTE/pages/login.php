@@ -33,7 +33,7 @@
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
 
-    <form action="http://localhost/projetoecomerce/admin/login" method="post">
+    <form action="http://localhost/projetohtml/admin/login" id="sendFormLogin" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Login" name="login">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -89,6 +89,37 @@
       increaseArea: '20%' // optional
     });
   });
+
+
+/*   jQuery(document).ready(function(){
+    jQuery('#sendFormLogin').submit(function(){
+      var dados = jQuery( this ).serialize();
+
+                jQuery.ajax({
+                  type: "POST",
+                  url: "http://localhost/projetohtml/admin/login",
+                  data: dados,
+                  success: function( data ) {
+                    console.log("dados enviados / resposta:");
+                    console.log(data);
+                
+                    
+
+                  },
+                  error: function (result) {
+          
+                    console.log(result);
+                    } 
+
+
+
+      });
+
+      
+      return false;
+    });
+  });*/
+
 </script>
 </body>
 </html>

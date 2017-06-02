@@ -292,7 +292,7 @@ $app->post('/admin/register',function ($request,$response) {
         
         $user -> register($_POST["email"],$_POST["login"], $_POST["password"],$_POST["tel"],$inadmin);
         
-        //header("Location: /projetoecomerce/admin");
+        header("Location: /projetoehtml/admin");
         
         $response = array("result","usuario-registrado");
         
@@ -302,14 +302,14 @@ $app->post('/admin/register',function ($request,$response) {
     });
 
 			
-$app->post('/admin/login',function () {
+$app->post('/admin/login',function ($request,$response) {
 				
 				
 	$user = new User();
 				
 	$user -> login($_POST["login"], $_POST["password"]);
 				
-	//header("Location: /projetoecomerce/admin");
+	header("Location: http://localhost/projetohtml/admin");
 				
 	exit;
 });
@@ -359,13 +359,9 @@ $app->post('/admin/cadastroprod',function($response) use ($app){
 				));
 								
 								if(empty($results)){
-									
-								
-								
+
 									$products = new Products();
 									
-					
-					
 									$products -> insert( 	$_POST["id_prod"],
 											$_POST["nome_prod_curto"],
 											$_POST["nome_prod_longo"],
@@ -381,22 +377,21 @@ $app->post('/admin/cadastroprod',function($response) use ($app){
 											$_POST["visivel"],
 											$_POST["comprimento_centimetro"]);
 									
-						
+									$response = "sucesso";
 									
-									$response = array("response","produtocadastradosucesso");
+									echo $response;
 									
-									echo json_encode($response);
-									
+							
 								}else{
 									
-								    $response = array("response","produtojacadastrado");
-									
-								    echo json_encode($response);
+								  
+									$response = "error";
+									echo $response;
 									
 				
 								}
 				
-								
+						
 							});
 
 
