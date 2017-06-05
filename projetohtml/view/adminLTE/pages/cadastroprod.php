@@ -486,64 +486,63 @@
 
     <form id="sendFormCadastroprod"  method="post">
 
-      <div class="form-group" id="formidproduct" ng-repeat="idproduct in idproducts">
+      <div class="form-group" id="formidproduct">
 
       <h4 id="idproducth4">Id Produto:</h4>
-          <input type="number" id="idproduct" class="form-control "  ng-controller="ecommerce-productid" placeholder="Id produto" name="id_prod">
-         
+    
         </div>
 
-      <div class="form-group">
+      <div class="form-group" id="form_nome_prod_curto">
       <h4 id="">Nome Curto:</h4>
         <input type="text" id="nome_prod_curto" class="form-control" placeholder="Nome Curto" name="nome_prod_curto">
        
       </div>
 
-       <div class="form-group">
+       <div class="form-group" id="form_nome_prod_longo">
       <h4 id="">Nome Longo:</h4>
         <input type="text" id="nome_prod_longo" class="form-control" placeholder="Nome Longo" name="nome_prod_longo">
        
       </div>
 
-      <div class="form-group">
-      <h4 id="">Codigo interno:</h4>
+      <div class="form-group" id="form_codigo_interno">
+      <h4 id="">Codigo interno Minimo 6 digitos:</h4>
         <input type="number" id="codigo_interno" min="1" step="any" class="form-control" placeholder="Codigo interno" name="codigo_interno">
         
       </div>
 
-      <div class="form-group">
+      <div class="form-group" id="form_id_cat">
       <h4 id="">Id Categoria:</h4>
         <input type="number" id="id_cat" min="1" step="any" class="form-control" placeholder="id categoria" name="id_cat">
        
       </div>
-      <div class="form-group">
+      <div class="form-group" id="form_preco">
       <h4 id="">Preço:</h4>
         <input type="number" id="preco" min="1" step="any" class="form-control" placeholder="preço" name="preco">
         
       </div>
 
-      <div class="form-group">
+      <div class="form-group" id="form_peso">
       <h4 id="">Peso:</h4>
         <input type="number" id="peso" min="1" step="any" class="form-control" placeholder="peso" name="peso">
        
       </div>
-      <div class="form-group">
+      <div class="form-group" id="form_largura_centimetro">
       <h4 id="">Largura Centimetros:</h4>
         <input type="number" id="largura_centimetro" min="0.1" step="any" class="form-control" placeholder="Largura Centimetros" name="largura_centimetro">
         
       </div>
 
-      <div class="form-group">
+      <div class="form-group" id="form_altura_centimetro">
       <h4 id="">Altura Centimetros:</h4>
         <input type="number" id="altura_centimetro" class="form-control" placeholder="Altura Centimetros" name="altura_centimetro"> 
       </div>
 
-      <div class="form-group">
+      <div class="form-group" id="form_quantidade_estoque">
       <h4 id="">Quantidade Estoque:</h4>
         <input type="number" id="quantidade_estoque" class="form-control" placeholder="Quantidade Estoque" name="quantidade_estoque"> 
       </div>
 
-      <div class="form-group">
+      <div class="form-group" id="form_preco_promorcional">
       <h4 id="">Preço promorcional:</h4>
         <input type="number" class="form-control" placeholder="Preço promorcional" name="preco_promorcional"> 
       </div>
@@ -553,12 +552,12 @@
         <input type="file" class="form-control" name="foto_principal"> 
       </div>
 
-       <div class="form-group">
+       <div class="form-group" >
       <h4 id="">Visivel:</h4>
         <input type="checkbox" value="1"  name="visivel" style="margin-left: 20px"> 
       </div>
 
-      <div class="form-group">
+      <div class="form-group" id="form_comprimento_centimetro">
       <h4 id="">Comprimento centimetros:</h4>
         <input type="number" class="form-control" placeholder="Comprimento Centimetro" name="comprimento_centimetro"> 
       </div>
@@ -780,22 +779,158 @@
 
 <script>
 
-$("#nome_prod_curto").on("focusout",function() {
+$("#idproduct").on("focusout",function() {
 
-  if( !$(this).val() ) {
+  if( !$(this).val()) {
 
-         alert("Coloque um valor.");
+         $('#formidproduct').addClass("has-warning");
+         $('#idproduct').attr("placeholder", "Campo vazio!");
 
+    }else {
+          $('#formidproduct').removeClass("has-warning");
+          $('#formidproduct').addClass("has-success");
     }
 
 });
 
+$("#nome_prod_curto").on("focusout",function() {
+
+  if( !$(this).val() || $(this).val().length < 3) {
+
+         $('#form_nome_prod_curto').addClass("has-warning");
+         $('#nome_prod_curto').attr("placeholder", "Campo vazio coloque o nome curto !");
+
+    }else {
+          $('#form_nome_prod_curto').removeClass("has-warning");
+          $('#form_nome_prod_curto').addClass("has-success");
+    }
+
+});
+
+
 $("#nome_prod_longo").on("focusout",function() {
 
-  if( !$(this).val() ) {
+ if( !$(this).val() || $(this).val().length < 5) {
 
-         alert("Coloque um valor.");
+         $('#form_nome_prod_longo').addClass("has-warning");
+         $('#nome_prod_longo').attr("placeholder", "Campo vazio coloque o nome longo !");
 
+    }else {
+          $('#form_nome_prod_longo').removeClass("has-warning");
+          $('#form_nome_prod_longo').addClass("has-success");
+    }
+
+});
+
+
+$("#codigo_interno").on("focusout",function() {
+
+ if( !$(this).val() || $(this).val().length < 6) {
+
+         $('#form_codigo_interno').addClass("has-warning");
+         $('#codigo_interno').attr("placeholder", "Campo vazio coloque o código!");
+
+    }else {
+          $('#form_codigo_interno').removeClass("has-warning");
+          $('#form_codigo_interno').addClass("has-success");
+    }
+
+});
+
+$("#id_cat").on("focusout",function() {
+
+ if( !$(this).val()) {
+
+         $('#form_id_cat').addClass("has-warning");
+         $('#id_cat').attr("placeholder", "Campo vazio !");
+
+    }else {
+          $('#form_id_cat').removeClass("has-warning");
+          $('#form_id_cat').addClass("has-success");
+    }
+
+});
+
+$("#preco").on("focusout",function() {
+
+ if( !$(this).val()) {
+
+         $('#form_preco').addClass("has-warning");
+         $('#preco').attr("placeholder", "Campo vazio !");
+
+    }else {
+          $('#form_preco').removeClass("has-warning");
+          $('#form_preco').addClass("has-success");
+    }
+
+});
+
+$("#peso").on("focusout",function() {
+
+ if( !$(this).val()) {
+
+         $('#form_peso').addClass("has-warning");
+         $('#peso').attr("placeholder", "Campo vazio !");
+
+    }else {
+          $('#form_peso').removeClass("has-warning");
+          $('#form_peso').addClass("has-success");
+    }
+
+});
+
+$("#largura_centimetro").on("focusout",function() {
+
+ if( !$(this).val()) {
+
+         $('#form_largura_centimetro').addClass("has-warning");
+         $('#largura_centimetro').attr("placeholder", "Campo vazio !");
+
+    }else {
+          $('#form_largura_centimetro').removeClass("has-warning");
+          $('#form_largura_centimetro').addClass("has-success");
+    }
+
+});
+
+$("#altura_centimetro").on("focusout",function() {
+
+ if( !$(this).val()) {
+
+         $('#form_altura_centimetro').addClass("has-warning");
+         $('#altura_centimetro').attr("placeholder", "Campo vazio !");
+
+    }else {
+          $('#form_altura_centimetro').removeClass("has-warning");
+          $('#form_altura_centimetro').addClass("has-success");
+    }
+
+});
+
+$("#quantidade_estoque").on("focusout",function() {
+
+ if( !$(this).val()) {
+
+         $('#form_quantidade_estoque').addClass("has-warning");
+         $('#quantidade_estoque').attr("placeholder", "Campo vazio !");
+
+    }else {
+          $('#form_quantidade_estoque').removeClass("has-warning");
+          $('#form_quantidade_estoque').addClass("has-success");
+    }
+
+});
+
+$("#comprimento_centimetro").on("focusout",function() {
+
+ if( !$(this).val()) {
+
+         $('#form_comprimento_centimetro').addClass("has-warning");
+         $('#comprimento_centimetro').attr("placeholder", "Campo vazio !");
+
+    }else {
+          $('#form_comprimento_centimetro').removeClass("has-warning");
+          $('#form_comprimento_centimetro').addClass("has-success");
     }
 
 });
@@ -808,7 +943,7 @@ $("#nome_prod_longo").on("focusout",function() {
 
 
    			$('#idproduct').attr("placeholder","Ultimo Código Cadastrado: "+v.id_prod);
-   			$('#idproducth4').text("Código do Produto/Ultimo Código Cadastrado ("+v.id_prod+")");
+   			$('#idproducth4').text("Ultimo Código Cadastrado ("+v.id_prod+")");
    		});
     		
   	});
@@ -822,6 +957,22 @@ $("#nome_prod_longo").on("focusout",function() {
 
 jQuery(document).ready(function(){
     jQuery('#sendFormCadastroprod').submit(function(){
+
+      if($("#form_nome_prod_curto").hasClass("has-warning") || 
+        $("#form_nome_prod_longo").hasClass("has-warning")  ||
+        $("#form_codigo_interno").hasClass("has-warning")  ||
+        $("#form_id_cat").hasClass("has-warning")  ||
+        $("#form_preco").hasClass("has-warning")  ||
+        $("#form_peso").hasClass("has-warning")   ||
+        $("#form_largura_centimetro").hasClass("has-warning")   ||
+        $("#form_altura_centimetro").hasClass("has-warning")   ||
+        $("#form_quantidade_estoque").hasClass("has-warning")  ||
+        $("#form_comprimento_centimetro").hasClass("has-warning")){
+
+          alert("Inconsistencia nos campos em laranja, favor verificar novamente.");
+
+      }else{
+         
       var dados = jQuery( this ).serialize();
 
                 jQuery.ajax({
@@ -837,9 +988,9 @@ jQuery(document).ready(function(){
 
                       if(data == "error"){
 
-                        $('#formidproduct').addClass("has-warning");
-                        $('#formidproduct').val("Id já cadastrado!");
-                        alert("Já existe um produto cadastrado com esse ID");
+                       $('#form_nome_prod_curto').addClass("has-warning");
+                       $('#form_codigo_interno').addClass("has-warning");
+                        alert("Já existe um produto com mesmo nome ou codigo interno");
                        
 
                       }else{
@@ -860,9 +1011,11 @@ jQuery(document).ready(function(){
 
       });
 
-      
+       }
       return false;
+       
     });
+
   });
 
 

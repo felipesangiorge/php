@@ -47,11 +47,18 @@ $app->get(
     }
 );
 
+$app->get(
+    '/shop-produto',
+    function () {
+        require_once("view/shop-produto.php");
+    }
+    );
+
 $app->get('/produtos', function(){
 
     $sql = new Sql();
 
-    $data = $sql->select("SELECT * FROM tb_produtos where preco_promorcional > 0 order by RAND() limit 4");
+    $data = $sql->select("SELECT * FROM tb_produtos where preco_promorcional >= 0 order by RAND() limit 4");
 
     foreach ($data as &$produto) {
         $preco = $produto['preco'];
@@ -127,13 +134,14 @@ LIMIT 10;
 
 
 $app->get("/produto-:id_prod",function($id_prod){
+       
+    
+    $sqlAdm = new SqlAdm();
+    
+    $produtos = $sqlAdm->select("SELECT * FROM tb_produtos where id_prod = $id_prod");
+    
 
-$sql = new Sql();
-
-
-$produtos = $sql->select("SELECT * FROM tb_produtos where id_prod = $id_prod");
-
-$produto = $produtos[0];
+    $produto = $produtos[0];
 
         $preco = $produto['preco'];
         $centavos = explode(".", $preco);
@@ -143,9 +151,9 @@ $produto = $produtos[0];
         $produto['parcela'] = number_format($preco/$produto['parcelas'], 2, ",", ".");
         $produto['total'] = number_format($preco, 2, ",", ".");
     
-
-
-	require_once("view/shop-produto.php");
+        require_once("view/shop-produto.php");
+      
+       
 });
 
 $app->get('/carrinho-dados', function(){
@@ -353,12 +361,17 @@ $app->post('/admin/cadastroprod',function($response) use ($app){
 								
 				$sql = new SqlAdm();
 								
-				$results = $sql->select("SELECT id_prod FROM tb_produtos WHERE id_prod = :id_prod",array(
+				$results = $sql->select("SELECT * FROM tb_produtos WHERE nome_prod_curto = :nome_prod_curto",array(
 										
-				":id_prod"=>$_POST["id_prod"]
+				":nome_prod_curto"=>$_POST["nome_prod_curto"]
+				));
+				
+				$results_codigo_interno = $sql->select("SELECT * FROM tb_produtos WHERE codigo_interno = :codigo_interno",array(
+				    
+				    ":codigo_interno"=>$_POST["codigo_interno"]
 				));
 								
-								if(empty($results)){
+				if(empty($results) || empty($results_codigo_interno)){
 
 									$products = new Products();
 									
