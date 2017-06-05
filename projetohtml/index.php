@@ -285,7 +285,7 @@ $app->get('/admin/register',function () {
         
     });
 
-$app->post('/admin/register',function ($request,$response) {
+$app->post('/admin/register-user',function ($response)  {
         
         
         $user = new User();
@@ -298,15 +298,34 @@ $app->post('/admin/register',function ($request,$response) {
             $inadmin = 0;
         }
         
-        $user -> register($_POST["email"],$_POST["login"], $_POST["password"],$_POST["tel"],$inadmin);
+        $sqlAdm = new SqlAdm();
         
-        header("Location: /projetoehtml/admin");
+        $results = $sql -> select("SELECT deslogin FROM tb_users WHERE deslogin = :login ",array(
+            
+            ":login"=>$_POST["login"],
+            
+        ));
         
-        $response = array("result","usuario-registrado");
+        if (empty($results)){
+            
+            $user -> register($_POST["email"],$_POST["login"], $_POST["password"],$_POST["tel"],$inadmin);
+            
+            header("Location: /projetoehtml/admin");
+            
+            $response = "success";
+            
+            echo $response;
+            
+        }else{
+            
+            $response = "error";
+            
+            echo $response;
+            
+        }
+ 
         
-        echo json_encode($response);
-        
-        exit;
+       
     });
 
 			

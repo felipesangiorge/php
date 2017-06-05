@@ -107,13 +107,24 @@
 
                 jQuery.ajax({
                   type: "POST",
-                  url: "http://localhost/projetohtml/admin/register",
+                  url: "http://localhost/projetohtml/admin/register-user",
                   data: dados,
                   success: function( data ) {
                     console.log("dados enviados/ resposta:");
                     console.log(data);
-                    alert("Usuario Cadastrado Com Sucesso!");
-                   /* window.location.reload();*/
+                   
+                   if(data == "error"){
+
+                     
+                        alert("Já existe um Usuário cadastrado com esses dados");
+                       
+
+                      }else{
+
+                        alert("Usuário cadastrado com sucesso!");
+                         window.location.reload();
+                      }
+
 
                   },
                   error: function (result) {

@@ -155,20 +155,9 @@ class User{
 	
 	public static function register($email,$login,$password,$tel,$inadmin){
 	    
-	    $sql = new Sql();
+	   
+	        
 	    
-	    $results = $sql -> select("SELECT deslogin FROM tb_users WHERE deslogin = :LOGIN ",array(
-	        
-	        ":LOGIN"=>$login,
-	        
-	    ));
-	    
-	    
-	    if ($results[0] == "teste"){
-	        
-	        throw new Exception("Usuário já cadastrado");
-	        
-	    }else{
 	        
 	        $sqlAdm = new SqlAdm();
 	       
@@ -205,7 +194,7 @@ class User{
 	}
 			
 		
-}
+
 	
 
 
