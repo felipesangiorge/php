@@ -34,28 +34,28 @@
     <p class="login-box-msg">Cadastrar Novo Usuário</p>
 
     <form id="sendFormRegister" method="post">
-    <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email" name="email">
+    <div class="form-group has-feedback" id="form_email">
+        <input type="email" class="form-control" placeholder="Email" name="email" id="email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
 
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Login" name="login">
+      <div class="form-group has-feedback" id="form_login">
+        <input type="text" class="form-control" placeholder="Login" name="login"  id="login">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
 
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password" name="password">
+      <div class="form-group has-feedback" id="form_password">
+        <input type="password" class="form-control" placeholder="Password" name="password"  id="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
 
-      <div class="form-group has-feedback">
-        <input type="tel" class="form-control" placeholder="(00)0000-0000" min="0" max="11" name="tel">
+      <div class="form-group has-feedback" id="form_tel">
+        <input type="tel" class="form-control" placeholder="(00)0000-0000" min="0" max="11" name="tel"  id="tel">
         <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
       </div>
 
-       <div class="form-group has-feedback">
-        <input type="checkbox" class="form-control" placeholder="Password" name="inadmin"> Administrador
+       <div class="form-group has-feedback" >
+        <input type="checkbox" class="form-control" placeholder="Password" name="inadmin"  id="inadmin"> Administrador
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
 
@@ -100,6 +100,62 @@
       increaseArea: '20%' // optional
     });
   });
+
+  $("#email").on("focusout",function() {
+
+ if( !$(this).val()) {
+
+         $('#form_email').addClass("has-warning");
+         $('#email').attr("placeholder", "Campo vazio coloque um e-mail !");
+
+    }else {
+          $('#form_email').removeClass("has-warning");
+          $('#form_email').addClass("has-success");
+    }
+
+});
+
+   $("#login").on("focusout",function() {
+
+ if( !$(this).val()) {
+
+         $('#form_login').addClass("has-warning");
+         $('#login').attr("placeholder", "Campo vazio coloque um Login !");
+
+    }else {
+          $('#form_login').removeClass("has-warning");
+          $('#form_login').addClass("has-success");
+    }
+
+});
+
+   $("#password").on("focusout",function() {
+
+ if( !$(this).val() || $(this).val().length < 5) {
+
+         $('#form_password').addClass("has-warning");
+         $('#password').attr("placeholder", "minimo 5 caracteres");
+
+    }else {
+          $('#form_password').removeClass("has-warning");
+          $('#form_password').addClass("has-success");
+    }
+
+});
+
+      $("#tel").on("focusout",function() {
+
+ if( !$(this).val()) {
+
+         $('#form_tel').addClass("has-warning");
+        
+
+    }else {
+          $('#form_tel').removeClass("has-warning");
+          $('#form_tel').addClass("has-success");
+    }
+
+});
 
   jQuery(document).ready(function(){
     jQuery('#sendFormRegister').submit(function(){
