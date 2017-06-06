@@ -154,11 +154,17 @@ class User{
 	
 	
 	public static function register($email,$login,$password,$tel,$inadmin){
-	    
-	   
 	        
-	    
-	        
+	        $value;
+        
+    	    if($inadmin == "on"){
+    	        
+    	        $value = 1;
+    	    }else{
+    	        $value = 0;
+    	        
+    	    }
+    	    
 	        $sqlAdm = new SqlAdm();
 	       
 	        $sqlAdm -> query("INSERT INTO tb_persons (desperson,desemail,nrphone) VALUES (:login,:email,:tel)",array(
@@ -177,16 +183,18 @@ class User{
             
 	        ));
 	       
-	       
-	        
-	        $sqlAdm -> query("INSERT INTO tb_users (idperson, deslogin, despassword, inadmin) VALUES (:idperson, :login,:password,:inadmin)",array(
+  
+	         $sqlAdm -> query("INSERT INTO tb_users (idperson, deslogin, despassword, inadmin) VALUES (:idperson, :login,:password,:inadmin)",array(
 	            
-	            ":idperson"=>$idperson,
+	            ":idperson"=>$idperson[0][idperson],
 	            ":login"=>$login,
 	            ":password"=>$password,
-	            ":inadmin"=>$inadmin,
+	            ":inadmin"=>$value
 	            
-	        ));
+	        )); 
+	        
+	      
+	    
 	        
 	    }
 	    

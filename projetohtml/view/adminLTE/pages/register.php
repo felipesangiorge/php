@@ -122,7 +122,7 @@
                       }else{
 
                         alert("Usuário cadastrado com sucesso!");
-                         window.location.reload();
+                        window.location.reload();
                       }
 
 

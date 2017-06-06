@@ -289,29 +289,25 @@ $app->post('/admin/register-user',function ($response)  {
         
         
         $user = new User();
-        
-        if ($_POST["inadmin"] == "on"){
-            
-            $inadmin = 1;
-        }else {
-            
-            $inadmin = 0;
-        }
-        
+   
         $sqlAdm = new SqlAdm();
         
-        $results = $sql -> select("SELECT deslogin FROM tb_users WHERE deslogin = :login ",array(
+        $results_login = $sqlAdm -> select("SELECT * FROM tb_persons WHERE desperson like :login ",array(
             
             ":login"=>$_POST["login"],
             
         ));
         
-        if (empty($results)){
+        $results_email = $sqlAdm -> select("SELECT * FROM tb_persons WHERE desemail like :email ",array(
             
-            $user -> register($_POST["email"],$_POST["login"], $_POST["password"],$_POST["tel"],$inadmin);
+            ":email"=>$_POST["email"],
             
-            header("Location: /projetoehtml/admin");
+        ));
+        
+        if (empty($results_login) && empty($results_email)){
             
+            $user -> register($_POST["email"],$_POST["login"], $_POST["password"],$_POST["tel"],$_POST["inadmin"]);
+        
             $response = "success";
             
             echo $response;
