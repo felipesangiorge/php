@@ -484,41 +484,36 @@
 
  <form>
 
- <table id="main-table-editaprod-th">
-                 
-                        <tr>
-                                <th>Id</th>
-                                <th>Nome Curto</th>
-                                <th>Nome Longo</th>
-                                <th>Código Interno</th>
-                                <th>Categoria</th>
-                                <th>Preço</th>
-                                <th>Peso</th>
-                                <th>Largura (cm)</th>
-                                <th>Altura (cm)</th>
-                                <th>Quantidade Estoque</th>
-                                <th>Preço Promorcional</th>
-                                <th>Foto</th>
-                                <th>Visivel</th>
-                                <th>Comprimento (cm)</th>
-                                <th>&nbsp;</th>
-                         </tr>
-                         
-  </table>
 
-<form id="sendFormEditarprod"  method="put">
+
     <div id="main-table-editaprod">
-             
-            	   <table>   
+              
+        <table id="tabela-produtos" class="table table-condensed table-hover table-striped text-center">   
+                    <thead>                          
+                          <tr>
+                                              <th data-column-id="id_prod">Id</th>
+                                              <th data-column-id="nome_prod_curto">Nome Curto</th>
+                                              <th data-column-id="nome_prod_longo">Nome Longo</th>
+                                              <th data-column-id="codigo_interno">Código Interno</th>
+                                              <th data-column-id="cate">Categoria</th>
+                                              <th data-column-id="preco">Preço</th>
+                                              <th data-column-id="peso">Peso</th>
+                                              <th data-column-id="largura_centimetro">Largura (cm)</th>
+                                              <th data-column-id="altura_centimetro">Altura (cm)</th>
+                                              <th data-column-id="quantidade_estoque">Quantidade Estoque</th>
+                                              <th data-column-id="preco_promorcional">Preço Promorcional</th>
+                                              <th data-column-id="foto_principal">Foto</th>
+                                              <th data-column-id="visivel">Visivel</th>
+                                              <th data-column-id="comprimento_centimetro">Comprimento (cm)</th>
+                                            <th>&nbsp;</th>'
+                            </tr>
+                        
 
+                  </thead>
             			      
-                          <tbody>
-                    					 <tr id="tabela-produtos">
-        	 	
-                    				 	</tr>
-                	       </tbody>
+              <tbody></tbody>
               				 
-                 </table>
+        </table>
 
                   
       </div>
@@ -529,9 +524,9 @@
        
       </div>
 
-        <
+        
 
-</form>
+
   <!-- /.content-wrapper -->
  
 
@@ -778,37 +773,32 @@ $(document).ready(function(){
   	$.getJSON('http://localhost/projetohtml/admin/editarprod-todos',function(data){
    		$.each(data, function(k, v){
 
-   			
+  
+        $('#tabela-produtos tbody').append("<tr><td id='id_prod' name='id_prod'>"+v.id_prod+"</td>"+
+   												"<td id='nome_prod_curto'>"+'<input type="text" name="nome_prod_curto" value='+v.nome_prod_curto+'></input>'+"</td>"+
+							   					"<td id='nome_prod_longo'>"+'<input type="text" name="nome_prod_longo" value='+v.nome_prod_longo+'></input>'+"</td>"+
+							   					"<td>"+'<input type="number" name="codigo_interno" class="table-editaprod-number2" value='+v.codigo_interno+'></input>'+"</td>"+
+							   					"<td>"+'<input type="text" name="id_cat" class="table-editaprod-number" value='+v.id_cat+'></input>'+"</td>"+
+							   					"<td>"+'<input type="number" name="preco" class="table-editaprod-number2" value='+v.preco+'></input>'+"</td>"+
+							   					"<td>"+'<input type="number" name="peso" class="table-editaprod-number" value='+v.peso+'></input>'+"</td>"+
+							   					"<td>"+'<input type="number" name="largura_centimetro" class="table-editaprod-number" value='+v.largura_centimetro+'></input>'+"</td>"+
+							   					"<td>"+'<input type="number" name="altura_centimetro" class="table-editaprod-number" value='+v.altura_centimetro+'></input>'+"</td>"+
+							   					"<td>"+'<input type="number" name="quantidade_estoque" class="table-editaprod-number" value='+v.quantidade_estoque+'></input>'+"</td>"+
+							   					"<td>"+'<input type="number" name="preco_promorcional" class="table-editaprod-number2" value='+v.preco_promorcional+'></input>'+"</td>"+
+							   					"<td>"+'<input type="file" name="foto_principal" value='+v.foto_principal+'></input>'+"</td>"+
+							   					"<td>"+'<input type="text" name="visivel" value='+v.visivel+'></input>'+"</td>"+
+							   					"<td>"+'<input type="text" name="comprimento_centimetro" class="table-editaprod-number" value='+v.comprimento_centimetro+'></input>'+"</td>"+
+                          "<td>"+'<input type="button"  id="editarProdForm" value="Editar" name="editar"></input>'+"</td></tr>")
+
+ 
+   		});
 
        
-        
-        $('#tabela-produtos').append("<tr><td id='id_prod' name='id_prod'>"+v.id_prod+"<td>"+
-   												"<td>"+'<input type="text" name="nome_prod_curto" value='+v.nome_prod_curto+'></input>'+"<td>"+
-							   					"<td>"+'<input type="text" name="nome_prod_longo" value='+v.nome_prod_longo+'></input>'+"<td>"+
-							   					"<td>"+'<input type="number" name="codigo_interno" class="table-editaprod-number2" value='+v.codigo_interno+'></input>'+"<td>"+
-							   					"<td>"+'<input type="text" name="id_cat" class="table-editaprod-number" value='+v.id_cat+'></input>'+"<td>"+
-							   					"<td>"+'<input type="number" name="preco" class="table-editaprod-number2" value='+v.preco+'></input>'+"<td>"+
-							   					"<td>"+'<input type="number" name="peso" class="table-editaprod-number" value='+v.peso+'></input>'+"<td>"+
-							   					"<td>"+'<input type="number" name="largura_centimetro" class="table-editaprod-number" value='+v.largura_centimetro+'></input>'+"<td>"+
-							   					"<td>"+'<input type="number" name="altura_centimetro" class="table-editaprod-number" value='+v.altura_centimetro+'></input>'+"<td>"+
-							   					"<td>"+'<input type="number" name="quantidade_estoque" class="table-editaprod-number" value='+v.quantidade_estoque+'></input>'+"<td>"+
-							   					"<td>"+'<input type="number" name="preco_promorcional" class="table-editaprod-number2" value='+v.preco_promorcional+'></input>'+"<td>"+
-							   					"<td>"+'<input type="file" name="foto_principal" value='+v.foto_principal+'></input>'+"<td>"+
-							   					"<td>"+'<input type="text" name="visivel" value='+v.visivel+'></input>'+"<td>"+
-							   					"<td>"+'<input type="text" name="comprimento_centimetro" class="table-editaprod-number" value='+v.comprimento_centimetro+'></input>'+"<td>"+
-                          "<td>"+'<input type="button" id="editarProdForm" value="Editar" name="editar"></input>'+"<td></tr>")
-
-   				
-   			
-   				
-
-   		});
     		
   	});
 
-    
-
    });
+
 
 
  $(function(){
