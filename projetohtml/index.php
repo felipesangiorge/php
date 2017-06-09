@@ -279,6 +279,54 @@ $app->get('/admin/login',function () {
 			require_once("view/adminlte/pages/login.php");
 		});
 
+
+// ADMINISTRAÇÃO USERS ---------------
+  
+    
+$app->get('/admin/users',function () {
+        
+    require_once("view/adminlte/pages/users.php");
+        
+});
+    
+$app->get('/admin/users-list-all',function () {
+    
+        $users = new User();
+        
+        $data = $users->listAllUsers();
+        
+        echo json_encode($data);
+    
+    });
+$app->get('/admin/users/create',function () {
+        
+        require_once("view/adminlte/pages/users-create.php");
+        
+    });
+$app->get('/admin/users/:iduser',function ($iduser){
+    
+        require_once("view/adminlte/pages/users-update.php");
+        
+    });
+$app->post("/admin/users/create",function (){
+    
+    
+    
+});
+
+$app->post("/admin/users/:iduser",function ($iduser){
+        
+        
+        
+    });
+ $app->delete("/admin/users/:iduser",function ($iduser){
+        
+        
+        
+    });
+
+// NOVO ----------------------
+
 $app->get('/admin/register',function () {
             
         require_once("view/adminlte/pages/register.php");
@@ -324,7 +372,11 @@ $app->post('/admin/register-user',function ($response)  {
        
     });
 
-			
+//_________________________________________________________________________________________________________
+
+
+
+
 $app->post('/admin/login',function ($request,$response) {
 				
 				
@@ -337,7 +389,7 @@ $app->post('/admin/login',function ($request,$response) {
 	exit;
 });
 			
-				
+	
 				
 $app->get('/admin/cadastroprod',function () {
 					

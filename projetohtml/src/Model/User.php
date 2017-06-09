@@ -149,8 +149,16 @@ class User{
 			throw new Exception("Login ou senha Invalidos");
 		}
 		
-	
 	}
+	
+	public static function listAllUsers(){
+	    
+	    $sqlAdm = new SqlAdm();
+	    
+	    return $sqlAdm -> select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) ORDER BY b.desperson");
+	    
+	}
+	
 	
 	
 	public static function register($email,$login,$password,$tel,$inadmin){
