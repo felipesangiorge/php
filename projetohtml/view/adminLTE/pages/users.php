@@ -735,13 +735,42 @@
                                         '<td>'+v.deslogin+'</td>'+
                                         '<td>'+v.inadmin+'</td>'+
                                         '<td><a href="/projetohtml/admin/users/'+v.iduser+'"class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a></td>"'+
-                                        '<td><a href="/admin/users/'+v.iduser+'/delete"class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a></td></tr>"');
+                                        '<td><a href="/projetohtml/admin/users/'+v.iduser+'/delete" id="iduser-delete" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a></td></tr>"');
 
  
       });
       
     });
  });
+
+
+ jQuery(document).ready(function(){
+    jQuery('#iduser-delete').submit(function(){
+
+      alert("clicado");
+      var dados = jQuery( this ).serialize();
+
+                jQuery.ajax({
+                  type: "DELETE",
+                  url: "http://localhost/projetohtml/admin/users/{id}/delete",
+                  data: dados,
+                  success: function( data ) {
+                    console.log("dados enviados");
+                    console.log("data");
+                  },
+                  error: function (result) {
+          
+                    console.log(result);
+                    } 
+
+
+
+      });
+
+      
+      return false;
+    });
+  });
 
 </script>
 

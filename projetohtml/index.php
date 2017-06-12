@@ -303,7 +303,7 @@ $app->get('/admin/users/create',function () {
         require_once("view/adminlte/pages/users-create.php");
         
     });
-    $app->get('/admin/users/{id}',function ($request, $response, $id){
+$app->get('/admin/users/{id}',function ($request, $response, $id){
         
         $sqlAdm = new SqlAdm();
         
@@ -312,8 +312,11 @@ $app->get('/admin/users/create',function () {
              ":iduser"=>$id['id']
         ));  
    
-        echo json_encode($results);
         require_once("view/adminlte/pages/users-update.php");
+        
+        echo json_encode($results);
+        
+        exit;
         
     });
 $app->post("/admin/users/create",function (){
@@ -322,14 +325,36 @@ $app->post("/admin/users/create",function (){
     
 });
 
-$app->post("/admin/users/:iduser",function ($iduser){
+$app->post("/admin/users/{id}",function ($request, $response,$id){
         
-        
+    $sqlAdm = new SqlAdm();
+    
+    
+    $results = $sqlAdm -> select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser like :iduser",array(
+        ":iduser"=>$id['id']
+    ));
+  
+    return json_encode($results);
+    
+    exit;
+    
         
     });
- $app->delete("/admin/users/:iduser",function ($iduser){
+    $app->delete("/admin/users/{id}/delete",function ($request, $response,$id){
+        
+        $sqlAdm = new SqlAdm();
+        
+        $idperson = $sqlAdm -> select("SELECT idperson FROM tb_users WHERE iduser like :iduser",array(
+            
+            ":iduser"=>$id['id']
+        ));
+        
+        //SELECT idperson FROM tb_users WHERE iduser like 41;
         
         
+        $response = "sucesso";
+        
+        echo json_encode($idperson);
         
     });
 

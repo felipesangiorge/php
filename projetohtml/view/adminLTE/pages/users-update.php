@@ -524,7 +524,7 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form role="form" action="/admin/users/{$user.iduser}" method="post">
+        <form role="form" action="http://localhost/projetohtml/admin/users/{id}" method="post">
           <div class="box-body">
             <div class="form-group">
               <label for="desperson">Nome</label>
@@ -532,7 +532,7 @@
             </div>
             <div class="form-group">
               <label for="deslogin">Login</label>
-              <input type="text" class="form-control" id="deslogin" name="deslogin" placeholder="Digite o login"  value="{$user.deslogin}">
+              <input type="text" class="form-control" id="deslogin" name="deslogin" placeholder="Digite o login"  value="{id.deslogin}">
             </div>
             <div class="form-group">
               <label for="nrphone">Telefone</label>
@@ -832,15 +832,15 @@ $(document).ready(function(){
 
  $(document).ready(function(){
 
- 	$.getJSON('http://localhost/projetohtml/admin/users/{id}',function(data){
+ 	$.getJSON('http://localhost/projetohtml/admin/users/41',function(data){
    		$.each(data, function(k, v){
-
-
-
-   			$('#desperson').attr("placeholder","Ultimo Código Cadastrado: "+v.desperson);
-   			$('#desperson').text("Código do Produto/Ultimo Código Cadastrado ("+v.desperson+")");
-
         alert("teste");
+
+
+   			$('#desperson').attr("placeholder",v.desperson);
+   			$('#desperson').value(v.desperson);
+
+        
    		});
     		
   	});
