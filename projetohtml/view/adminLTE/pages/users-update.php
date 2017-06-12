@@ -35,7 +35,7 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="../../view/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
-  
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -528,7 +528,7 @@
           <div class="box-body">
             <div class="form-group">
               <label for="desperson">Nome</label>
-              <input type="text" class="form-control" id="desperson" name="desperson" placeholder="Digite o nome" value="{$user.desperson}">
+              <input type="text" class="form-control" id="desperson" name="desperson" placeholder="Digite o nome">
             </div>
             <div class="form-group">
               <label for="deslogin">Login</label>
@@ -832,94 +832,26 @@ $(document).ready(function(){
 
  $(document).ready(function(){
 
- 	$.getJSON('http://localhost/projetohtml/admin/cadastroprod-last-id',function(data){
+ 	$.getJSON('http://localhost/projetohtml/admin/users/{id}',function(data){
    		$.each(data, function(k, v){
 
 
 
-   			$('#idproduct').attr("placeholder","Ultimo Código Cadastrado: "+v.id_prod);
-   			$('#idproducth4').text("Código do Produto/Ultimo Código Cadastrado ("+v.id_prod+")");
+   			$('#desperson').attr("placeholder","Ultimo Código Cadastrado: "+v.desperson);
+   			$('#desperson').text("Código do Produto/Ultimo Código Cadastrado ("+v.desperson+")");
+
+        alert("teste");
    		});
     		
   	});
 
-  	$.getJSON('http://localhost/projetohtml/admin/editarprod-todos',function(data){
-   		$.each(data, function(k, v){
 
-  
-        $('#tabela-produtos tbody').append("<tr><td id='id_prod' name='id_prod'>"+v.id_prod+"</td>"+
-   												"<td id='nome_prod_curto'>"+'<input type="text" name="nome_prod_curto" value='+v.nome_prod_curto+'></input>'+"</td>"+
-							   					"<td id='nome_prod_longo'>"+'<input type="text" name="nome_prod_longo" value='+v.nome_prod_longo+'></input>'+"</td>"+
-							   					"<td>"+'<input type="number" name="codigo_interno" class="table-editaprod-number2" value='+v.codigo_interno+'></input>'+"</td>"+
-							   					"<td>"+'<input type="text" name="id_cat" class="table-editaprod-number" value='+v.id_cat+'></input>'+"</td>"+
-							   					"<td>"+'<input type="number" name="preco" class="table-editaprod-number2" value='+v.preco+'></input>'+"</td>"+
-							   					"<td>"+'<input type="number" name="peso" class="table-editaprod-number" value='+v.peso+'></input>'+"</td>"+
-							   					"<td>"+'<input type="number" name="largura_centimetro" class="table-editaprod-number" value='+v.largura_centimetro+'></input>'+"</td>"+
-							   					"<td>"+'<input type="number" name="altura_centimetro" class="table-editaprod-number" value='+v.altura_centimetro+'></input>'+"</td>"+
-							   					"<td>"+'<input type="number" name="quantidade_estoque" class="table-editaprod-number" value='+v.quantidade_estoque+'></input>'+"</td>"+
-							   					"<td>"+'<input type="number" name="preco_promorcional" class="table-editaprod-number2" value='+v.preco_promorcional+'></input>'+"</td>"+
-							   					"<td>"+'<input type="file" name="foto_principal" value='+v.foto_principal+'></input>'+"</td>"+
-							   					"<td>"+'<input type="text" name="visivel" value='+v.visivel+'></input>'+"</td>"+
-							   					"<td>"+'<input type="text" name="comprimento_centimetro" class="table-editaprod-number" value='+v.comprimento_centimetro+'></input>'+"</td>"+
-                          "<td>"+'<input type="button"  id="editarProdForm" value="Editar" name="editar"></input>'+"</td></tr>")
-
- 
-   		});
-
-       
-    		
-  	});
 
    });
 
 
 
- $(function(){
-
-    $("#editarProdForm").on("click",function(){
-
-        alert("teste")
-
-        
-    });
-
-     $("#sendFormEditarprod").click(function(){
-
-        alert("testeForm")
-    });
-
-
-  });
-
-
-var request;
-
-
-jQuery(document).ready(function(){
-    jQuery('#sendFormEditarprod').submit(function(){
-      var dados = jQuery( this ).serialize();
-
-                jQuery.ajax({
-                  type: "POST",
-                  url: "http://localhost/projetohtml/admin/editarprod",
-                  data: dados,
-                  success: function( data ) {
-                    console.log("dados enviados");
-
-                  },
-                  error: function (result) {
-          
-                    console.log(result);
-                    } 
-
-
-
-      });
-
-      
-      return false;
-    });
-  });
+ 
 
 
 

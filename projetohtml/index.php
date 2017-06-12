@@ -303,8 +303,16 @@ $app->get('/admin/users/create',function () {
         require_once("view/adminlte/pages/users-create.php");
         
     });
-$app->get('/admin/users/:iduser',function ($iduser){
-    
+    $app->get('/admin/users/{id}',function ($request, $response, $id){
+        
+        $sqlAdm = new SqlAdm();
+        
+       
+         $results = $sqlAdm -> select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser like :iduser",array(
+             ":iduser"=>$id['id']
+        ));  
+   
+        echo json_encode($results);
         require_once("view/adminlte/pages/users-update.php");
         
     });

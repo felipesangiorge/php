@@ -734,7 +734,7 @@
                                         '<td>'+v.desemail+'</td>'+
                                         '<td>'+v.deslogin+'</td>'+
                                         '<td>'+v.inadmin+'</td>'+
-                                        '<td><a href="/admin/users/'+v.iduser+'"class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a></td>"'+
+                                        '<td><a href="/projetohtml/admin/users/'+v.iduser+'"class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a></td>"'+
                                         '<td><a href="/admin/users/'+v.iduser+'/delete"class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a></td></tr>"');
 
  
