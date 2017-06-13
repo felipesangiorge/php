@@ -503,7 +503,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                <form method="post" id="form-table-users">
+                <form method="delete" id="form-table-users">
                   <tr id="table-users">
                  
                   </tr>
@@ -724,53 +724,46 @@
 
 <script>
 
- $(document).ready(function(){
+   $(document).ready(function(){
+         $.getJSON('http://localhost/projetohtml/admin/users-list-all',function(data){
+             $.each(data, function(k, v){
+                $('#table-users').append("<tr>"+'<td>'+v.iduser+'</td>'+
+                                    '<td>'+v.desperson+'</td>'+
+                                    '<td>'+v.desemail+'</td>'+
+                                    '<td>'+v.deslogin+'</td>'+
+                                    '<td>'+v.inadmin+'</td>'+
+                                    '<td><a href="/projetohtml/admin/users/'+v.iduser+'"class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a></td>"'+
+                                    '<td><a href="javascript:;" id="'+ v.iduser +'" class="btn btn-danger btn-xs delete-user"><i class="fa fa-trash"></i> Excluir</a></td>'+"</tr>");
+                });
+          });
+     });
 
-    $.getJSON('http://localhost/projetohtml/admin/users-list-all',function(data){
-      $.each(data, function(k, v){
- 
-        $('#table-users').append("<tr>"+'<td>'+v.iduser+'</td>'+
-                                        '<td>'+v.desperson+'</td>'+
-                                        '<td>'+v.desemail+'</td>'+
-                                        '<td>'+v.deslogin+'</td>'+
-                                        '<td>'+v.inadmin+'</td>'+
-                                        '<td><a href="/projetohtml/admin/users/'+v.iduser+'"class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a></td>"'+
-                                        '<td><a href="/projetohtml/admin/users/'+v.iduser+'/delete" id="iduser-delete" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a></td></tr>"');
 
- 
-      });
-      
+$('body').on('click', '.delete-user', function () {
+
+      if( confirm('Confirmar exclusão do usuário ?')){
+
+         var id_user = $(this).attr('id');
+
+       $.ajax({
+        url: 'users/'+id_user+'/delete',
+        method: 'POST',
+        data: { id_user: id_user },
+        success: function ( response ) {
+           console.log(response);
+   
+        },
+        error: function () {
+
+        }
     });
- });
+       
+       window.location.reload();
+  }
+  
+   
+});
 
-
- jQuery(document).ready(function(){
-    jQuery('#iduser-delete').submit(function(){
-
-      alert("clicado");
-      var dados = jQuery( this ).serialize();
-
-                jQuery.ajax({
-                  type: "DELETE",
-                  url: "http://localhost/projetohtml/admin/users/{id}/delete",
-                  data: dados,
-                  success: function( data ) {
-                    console.log("dados enviados");
-                    console.log("data");
-                  },
-                  error: function (result) {
-          
-                    console.log(result);
-                    } 
-
-
-
-      });
-
-      
-      return false;
-    });
-  });
 
 </script>
 

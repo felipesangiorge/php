@@ -340,7 +340,7 @@ $app->post("/admin/users/{id}",function ($request, $response,$id){
     
         
     });
-    $app->delete("/admin/users/{id}/delete",function ($request, $response,$id){
+    $app->post("/admin/users/{id}/delete",function ($request, $response,$id){
         
         $sqlAdm = new SqlAdm();
         
@@ -349,12 +349,22 @@ $app->post("/admin/users/{id}",function ($request, $response,$id){
             ":iduser"=>$id['id']
         ));
         
+        $sqlAdm -> query ("DELETE FROM tb_users where iduser like :iduser",array(
+            
+            ":iduser"=>$id['id']
+        ));
+        
+        $sqlAdm -> query ("delete from tb_persons where idperson like :idperson ",array(
+            
+            ":idperson"=>$idperson[0][idperson]
+        ));
+        
         //SELECT idperson FROM tb_users WHERE iduser like 41;
         
         
         $response = "sucesso";
         
-        echo json_encode($idperson);
+        echo json_encode($response);
         
     });
 
