@@ -735,7 +735,7 @@
                                     '<td><a href="javascript:;" id="'+ v.iduser +'" class="btn btn-primary btn-xs edit-user"><i class="fa fa-edit"></i> Editar</a></td>"'+
                                     '<td><a href="javascript:;" id="'+ v.iduser +'" class="btn btn-danger btn-xs delete-user"><i class="fa fa-trash"></i> Excluir</a></td>'+"</tr>");
 
-             $_SESSION['desperson'] = v.desperson;
+             
                 });
           });
      });
@@ -780,7 +780,7 @@ $('body').on('click', '.edit-user', function () {
         success: function ( response ) {
            console.log(response);
 
-           /*window.location.replace("http://localhost/projetohtml/admin/users/users-update")*/
+           window.location.replace("http://localhost/projetohtml/admin/users/users-update")
         },
         error: function () {
 

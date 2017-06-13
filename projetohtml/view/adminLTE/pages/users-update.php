@@ -528,19 +528,19 @@
           <div class="box-body">
             <div class="form-group">
               <label for="desperson">Nome</label>
-              <input type="text" class="form-control" id="desperson" name="desperson" placeholder="Digite o nome" value="">
+              <input type="text" class="form-control" id="desperson" name="desperson" placeholder="Digite o nome" >
             </div>
             <div class="form-group">
               <label for="deslogin">Login</label>
-              <input type="text" class="form-control" id="deslogin" name="deslogin" placeholder="Digite o login"  value="{id.deslogin}">
+              <input type="text" class="form-control" id="deslogin" name="deslogin" placeholder="Digite o login"  >
             </div>
             <div class="form-group">
               <label for="nrphone">Telefone</label>
-              <input type="tel" class="form-control" id="nrphone" name="nrphone" placeholder="Digite o telefone"  value="{$user.nrphone}">
+              <input type="tel" class="form-control" id="nrphone" name="nrphone" placeholder="Digite o telefone"  >
             </div>
             <div class="form-group">
               <label for="desemail">E-mail</label>
-              <input type="email" class="form-control" id="desemail" name="desemail" placeholder="Digite o e-mail" value="{$user.desemail}">
+              <input type="email" class="form-control" id="desemail" name="desemail" placeholder="Digite o e-mail" >
             </div>
             <div class="checkbox">
               <label>
@@ -832,18 +832,35 @@ $(document).ready(function(){
 
  $(document).ready(function(){
 
- 	
+ $.ajax({
+        url: 'http://localhost/projetohtml/admin/users-update',
+        method: 'GET',
+        data: JSON,
+        success: function ( response ) {
+
+          $.each(JSON.parse(response), function(k, v){
+
+              console.log(v.desperson);
+              $("#desperson").attr("value",v.desperson);
+               $("#deslogin").attr("value",v.deslogin);
+                $("#nrphone").attr("value",v.nrphone);
+                $("#desemail").attr("value",v.desemail);
+                 $("#inadmin").attr("value",v.inadmin);
+               
+
+          });
+           console.log(response);
+
+           /*window.location.replace("http://localhost/projetohtml/admin/users/users-update")*/
+        },
+        error: function () {
+
+        }
+    });
 
 
-   			$('#desperson').attr("placeholder",$_SESSION['usuario']);
-   			$('#desperson').value($_SESSION['usuario']);
 
-        
-   		});
-    		
-
-
-
+   });
 
 
 
