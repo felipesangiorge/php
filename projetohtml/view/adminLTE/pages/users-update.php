@@ -524,11 +524,11 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form role="form" action="http://localhost/projetohtml/admin/users/{id}" method="post">
+        <form role="form">
           <div class="box-body">
             <div class="form-group">
               <label for="desperson">Nome</label>
-              <input type="text" class="form-control" id="desperson" name="desperson" placeholder="Digite o nome">
+              <input type="text" class="form-control" id="desperson" name="desperson" placeholder="Digite o nome" value="">
             </div>
             <div class="form-group">
               <label for="deslogin">Login</label>
@@ -832,22 +832,18 @@ $(document).ready(function(){
 
  $(document).ready(function(){
 
- 	$.getJSON('http://localhost/projetohtml/admin/users/41',function(data){
-   		$.each(data, function(k, v){
-        alert("teste");
+ 	
 
 
-   			$('#desperson').attr("placeholder",v.desperson);
-   			$('#desperson').value(v.desperson);
+   			$('#desperson').attr("placeholder",$_SESSION['usuario']);
+   			$('#desperson').value($_SESSION['usuario']);
 
         
    		});
     		
-  	});
 
 
 
-   });
 
 
 

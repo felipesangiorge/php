@@ -487,7 +487,7 @@
       <div class="box box-primary">
             
             <div class="box-header">
-              <a href="/admin/users/create" class="btn btn-success">Cadastrar Usuário</a>
+              <a href="http://localhost/projetohtml/admin/register" class="btn btn-success">Cadastrar Usuário</a>
             </div>
 
             <div class="box-body no-padding">
@@ -732,8 +732,10 @@
                                     '<td>'+v.desemail+'</td>'+
                                     '<td>'+v.deslogin+'</td>'+
                                     '<td>'+v.inadmin+'</td>'+
-                                    '<td><a href="/projetohtml/admin/users/'+v.iduser+'"class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a></td>"'+
+                                    '<td><a href="javascript:;" id="'+ v.iduser +'" class="btn btn-primary btn-xs edit-user"><i class="fa fa-edit"></i> Editar</a></td>"'+
                                     '<td><a href="javascript:;" id="'+ v.iduser +'" class="btn btn-danger btn-xs delete-user"><i class="fa fa-trash"></i> Excluir</a></td>'+"</tr>");
+
+             $_SESSION['desperson'] = v.desperson;
                 });
           });
      });
@@ -751,7 +753,8 @@ $('body').on('click', '.delete-user', function () {
         data: { id_user: id_user },
         success: function ( response ) {
            console.log(response);
-   
+
+
         },
         error: function () {
 
@@ -760,6 +763,32 @@ $('body').on('click', '.delete-user', function () {
        
        window.location.reload();
   }
+  
+   
+});
+
+$('body').on('click', '.edit-user', function () {
+
+   
+
+      var id_user = $(this).attr('id');
+
+       $.ajax({
+        url: 'users/'+id_user,
+        method: 'POST',
+        data: { id_user: id_user },
+        success: function ( response ) {
+           console.log(response);
+
+           /*window.location.replace("http://localhost/projetohtml/admin/users/users-update")*/
+        },
+        error: function () {
+
+        }
+    });
+       
+       window.location.reload();
+  
   
    
 });

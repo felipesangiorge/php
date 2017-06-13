@@ -288,6 +288,12 @@ $app->get('/admin/users',function () {
     require_once("view/adminlte/pages/users.php");
         
 });
+
+$app->get('/admin/users-update',function () {
+        
+    echo json_encode($_SESSION['edit-user']);
+        
+});
     
 $app->get('/admin/users-list-all',function () {
     
@@ -319,11 +325,8 @@ $app->get('/admin/users/{id}',function ($request, $response, $id){
         exit;
         
     });
-$app->post("/admin/users/create",function (){
-    
-    
-    
-});
+
+
 
 $app->post("/admin/users/{id}",function ($request, $response,$id){
         
@@ -333,7 +336,9 @@ $app->post("/admin/users/{id}",function ($request, $response,$id){
     $results = $sqlAdm -> select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser like :iduser",array(
         ":iduser"=>$id['id']
     ));
-  
+    
+    $_SESSION['edit-user'] = $results;
+    
     return json_encode($results);
     
     exit;
@@ -364,7 +369,7 @@ $app->post("/admin/users/{id}",function ($request, $response,$id){
         
         $response = "sucesso";
         
-        echo json_encode($response);
+        echo $response;
         
     });
 
