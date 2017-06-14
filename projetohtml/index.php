@@ -326,7 +326,41 @@ $app->get('/admin/users/{id}',function ($request, $response, $id){
         
     });
 
+ $app->post('/admin/update/users-update',function () {
+    
+    $sqlAdm = new SqlAdm();
+    
+    $sqlAdm -> query("UPDATE  tb_users a INNER JOIN tb_persons b USING(idperson) set b.desperson=:desperson,
+                                                                                     a.deslogin=:deslogin,
+                                                                                     b.nrphone=:nrphone,
+                                                                                     b.desemail=:desemail,
+                                                                                     a.inadmin=:inadmin
 
+                                                                    WHERE a.deslogin like :desloginsession",array(
+                                                                        
+                                                                        ":desperson"=>$_POST["desperson"],
+                                                                        ":deslogin"=>$_POST["deslogin"],
+                                                                        ":nrphone"=>$_POST["nrphone"],
+                                                                        ":desemail"=>$_POST["desemail"],
+                                                                        ":inadmin"=>$_POST["inadmin"],
+                                                                        ":desloginsession"=>$_SESSION['edit-user-deslogin'][0][deslogin]
+                                              
+                                              
+                                          ));
+  
+  /*   UPDATE  tb_users a INNER JOIN tb_persons b USING(idperson) set desperson="teste" WHERE iduser like  53 */
+   /*  $sqlAdm -> query("UPDATE tb_persons SET desperson=:desperson,
+                                          inadmin=:inadmin
+                                          WHERE deslogin like :desloginsession",array(
+                                              ":desloginsession"=>$_SESSION['edit-user-deslogin'][0][deslogin],
+                                              ":deslogin"=>$_POST["deslogin"],
+                                              ":inadmin"=>$_POST["inadmin"]
+                                              
+                                          ));   */
+    
+    echo "sucesso";
+       
+   }); 
 
 $app->post("/admin/users/{id}",function ($request, $response,$id){
    
@@ -337,6 +371,11 @@ $app->post("/admin/users/{id}",function ($request, $response,$id){
     $results = $sqlAdm -> select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser like :iduser",array(
         ":iduser"=>$id['id']
     ));
+    $deslogin = $sqlAdm -> select("SELECT deslogin FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser like :iduser",array(
+        ":iduser"=>$id['id']
+    ));
+    $_SESSION['edit-user-deslogin'] = null;
+    $_SESSION['edit-user-deslogin'] = $deslogin;
     $_SESSION['edit-user'] = null;
     $_SESSION['edit-user'] = $results;
     

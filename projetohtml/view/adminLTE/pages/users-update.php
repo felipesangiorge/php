@@ -524,7 +524,7 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form role="form">
+        <form role="form" id="form-edit-user" method="post">
           <div class="box-body">
             <div class="form-group">
               <label for="desperson">Nome</label>
@@ -542,7 +542,7 @@
               <label for="desemail">E-mail</label>
               <input type="email" class="form-control" id="desemail" name="desemail" placeholder="Digite o e-mail" >
             </div>
-            <div class="checkbox">
+            <div class="checkbox form-group">
               <label>
                 <input type="checkbox" name="inadmin" value="1" {if="$user.inadmin == 1"}checked{/if}> Acesso de Administrador
               </label>
@@ -828,7 +828,7 @@ $(document).ready(function(){
  });
 		action="http://localhost/projetoecomerce/admin/cadastroprod"
 
- });*/
+ });form-edit-user*/
 
  $(document).ready(function(){
 
@@ -840,7 +840,7 @@ $(document).ready(function(){
 
           $.each(JSON.parse(response), function(k, v){
 
-              console.log(v.desperson);
+              
               $("#desperson").attr("value",v.desperson);
                $("#deslogin").attr("value",v.deslogin);
                 $("#nrphone").attr("value",v.nrphone);
@@ -849,7 +849,7 @@ $(document).ready(function(){
                
 
           });
-           console.log(response);
+           
 
            /*window.location.replace("http://localhost/projetohtml/admin/users/users-update")*/
         },
@@ -857,6 +857,31 @@ $(document).ready(function(){
 
         }
     });
+
+ $('#form-edit-user').on('submit', function () {
+    var dados = jQuery( this ).serialize();
+
+     
+
+       $.ajax({
+        url: 'http://localhost/projetohtml/admin/update/users-update',
+        method: 'POST',
+        data: dados,
+        success: function ( response ) {
+           console.log(response);
+
+            window.location.replace("http://localhost/projetohtml/admin/users")
+        },
+        error: function () {
+
+        }
+    });
+       
+      
+  
+  
+   
+});
 
 
 
