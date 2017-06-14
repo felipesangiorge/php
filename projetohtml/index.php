@@ -348,15 +348,6 @@ $app->get('/admin/users/{id}',function ($request, $response, $id){
                                               
                                           ));
   
-  /*   UPDATE  tb_users a INNER JOIN tb_persons b USING(idperson) set desperson="teste" WHERE iduser like  53 */
-   /*  $sqlAdm -> query("UPDATE tb_persons SET desperson=:desperson,
-                                          inadmin=:inadmin
-                                          WHERE deslogin like :desloginsession",array(
-                                              ":desloginsession"=>$_SESSION['edit-user-deslogin'][0][deslogin],
-                                              ":deslogin"=>$_POST["deslogin"],
-                                              ":inadmin"=>$_POST["inadmin"]
-                                              
-                                          ));   */
     
     echo "sucesso";
        
