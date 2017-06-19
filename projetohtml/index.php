@@ -313,10 +313,9 @@ $app->get('/admin/users/{id}',function ($request, $response, $id){
         
         $sqlAdm = new SqlAdm();
         
-       
-         $results = $sqlAdm -> select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser like :iduser",array(
-             ":iduser"=>$id['id']
-        ));  
+        $user = new User();
+        
+        $results = $user->getUserById($id);
    
         require_once("view/adminlte/pages/users-update.php");
         
@@ -358,10 +357,11 @@ $app->post("/admin/users/{id}",function ($request, $response,$id){
         
     $sqlAdm = new SqlAdm();
     
+    $user = new User();
     
-    $results = $sqlAdm -> select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser like :iduser",array(
-        ":iduser"=>$id['id']
-    ));
+    $results = $user->getUserById($id);
+    
+  
     $deslogin = $sqlAdm -> select("SELECT deslogin FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser like :iduser",array(
         ":iduser"=>$id['id']
     ));
