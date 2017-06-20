@@ -280,8 +280,7 @@ $app->get('/admin/login',function () {
 		});
 
 
-// ADMINISTRAÇÃO USERS ---------------
-  
+// ADMINISTRAÇÃO USERS --------------- 
     
 $app->get('/admin/users',function () {
         
@@ -290,10 +289,32 @@ $app->get('/admin/users',function () {
 });
 
 $app->get('/admin/users-update',function () {
-        
-    echo json_encode($_SESSION['edit-user']);
+   
+    return json_encode($_SESSION['edit-user']);
         
 });
+
+$app->get('/admin/users-update/{id}',function ($request, $response, $id) {
+    
+        $_POST[$id];
+        
+        require_once("view/adminlte/pages/users-update.php");
+        
+        exit;
+    });
+
+$app->get('/admin/users-update/{id}/update',function ($request, $response, $id) {
+        
+        $user = new User();
+        
+        $results = $user->getUserByIdUpdateUser($id);
+        
+        return json_encode($results);
+   
+        exit;
+    });
+
+ 
     
 $app->get('/admin/users-list-all',function () {
     
@@ -307,21 +328,6 @@ $app->get('/admin/users-list-all',function () {
 $app->get('/admin/users/create',function () {
         
         require_once("view/adminlte/pages/users-create.php");
-        
-    });
-$app->get('/admin/users/{id}',function ($request, $response, $id){
-        
-        $sqlAdm = new SqlAdm();
-        
-        $user = new User();
-        
-        $results = $user->getUserById($id);
-   
-        require_once("view/adminlte/pages/users-update.php");
-        
-        echo json_encode($results);
-        
-        exit;
         
     });
 
@@ -359,9 +365,8 @@ $app->post("/admin/users/{id}",function ($request, $response,$id){
     
     $user = new User();
     
-    $results = $user->getUserById($id);
+    $results = $user->getUserByIdUpdateUser($id);
     
-  
     $deslogin = $sqlAdm -> select("SELECT deslogin FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser like :iduser",array(
         ":iduser"=>$id['id']
     ));
@@ -370,7 +375,7 @@ $app->post("/admin/users/{id}",function ($request, $response,$id){
     $_SESSION['edit-user'] = null;
     $_SESSION['edit-user'] = $results;
     
-    return json_encode($results);
+    return $results;
     
     exit;
     
@@ -405,6 +410,7 @@ $app->post("/admin/users/{id}",function ($request, $response,$id){
     });
 
 // NOVO ----------------------
+
 
 $app->get('/admin/register',function () {
             

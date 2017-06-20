@@ -691,10 +691,11 @@ $(document).ready(function(){
  $(document).ready(function(){
 
  $.ajax({
-        url: 'http://localhost/projetohtml/admin/users-update',
+        url: 'http://localhost/projetohtml/admin/users-update/'+$_POST[id_user]+'/update',
         method: 'GET',
         data: JSON,
         success: function ( response ) {
+          console.log(response);
 
           $.each(JSON.parse(response), function(k, v){
 

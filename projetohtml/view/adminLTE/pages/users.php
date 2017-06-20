@@ -638,7 +638,7 @@ $('body').on('click', '.edit-user', function () {
         success: function ( response ) {
            console.log(response);
 
-           window.location.replace("http://localhost/projetohtml/admin/users/users-update")
+           window.location.replace("http://localhost/projetohtml/admin/users-update/"+id_user)
         },
         error: function () {
 

@@ -12,8 +12,48 @@ class User{
 	private $despassword;
 	private $inadmin;
 	private $dtregister;
+	private $desperson;
+	private $nrphone;
+	private $desemail;
 	
-	public function getIduser(){
+
+  
+    public function getDesperson()
+    {
+        return $this->desperson;
+    }
+
+   
+    public function getNrphone()
+    {
+        return $this->nrphone;
+    }
+
+   
+    public function getDesemail()
+    {
+        return $this->desemail;
+    }
+
+ 
+    public function setDesperson($desperson)
+    {
+        $this->desperson = $desperson;
+    }
+
+ 
+    public function setNrphone($nrphone)
+    {
+        $this->nrphone = $nrphone;
+    }
+
+  
+    public function setDesemail($desemail)
+    {
+        $this->desemail = $desemail;
+    }
+
+    public function getIduser(){
 		
 		return $this ->iduser;
 		
@@ -200,11 +240,26 @@ class User{
 	            ":inadmin"=>$value
 	            
 	        )); 
-	        
-	      
-	    
+
 	        
 	    }
+	    
+	    public static function getUserByIdUpdateUser($id){
+	        
+	        $sqlAdm = new SqlAdm();
+	        
+	       
+	        $results = $sqlAdm -> select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser like :iduser",array(
+	            ":iduser"=>$id['id']
+	        ));
+	        
+	        $user = new User();
+
+	        return ($results);
+	        
+	    }
+	    
+	
 	    
 	    
 	}
