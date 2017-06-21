@@ -402,7 +402,7 @@
             </div>
             <div class="checkbox form-group">
               <label>
-                <input type="checkbox" name="inadmin" value="1" {if="$user.inadmin == 1"}checked{/if}> Acesso de Administrador
+                <input type="checkbox" name="inadmin" value=""> Acesso de Administrador
               </label>
             </div>
           </div>
@@ -662,45 +662,48 @@
 </html>
 
 <script>
- /*$(function(){
 
- var url='http://localhost/projetoecomerce/admin/cadastroprod-last-id'
-
- var listid = $('#idproduct');
-
-$(document).ready(function(){
-	
-	$.ajax({
-
-		url:url,
-		method:'GET',
-		type:"JSON"
-
-	}).done(function(idprod){
-
-
-		listid.html("<h1>"+idprod+"</h1>");
-	});
-
-		return false;
- });
-		action="http://localhost/projetoecomerce/admin/cadastroprod"
-
- });form-edit-user*/
 
  $(document).ready(function(){
 
     var id;
+
+    
    
 
-   $.getJSON('http://localhost/projetohtml/admin/users-list-all',function(data){
+  /* $.getJSON('http://localhost/projetohtml/admin/users-list-all',function(data){
              $.each(data, function(k, v){
 
                id = v.iduser;
                console.log(id);
               
                 });
+          });*/
+
+ /*$.ajax({
+        url: "http://localhost/projetohtml/admin/users-list-all",
+        method: 'GET',
+        async: false,
+        data: JSON,
+        success: function ( response ) {
+          console.log(response);
+          console.log(id);
+
+          $.each(JSON.parse(response), function(k, v){
+
+              
+             id= v.iduser;
+          
+
           });
+           
+
+        
+        },
+        error: function () {
+
+        }
+    });
 
  $.ajax({
         url: "http://localhost/projetohtml/admin/users-update/"+id+"/update",
@@ -723,12 +726,55 @@ $(document).ready(function(){
           });
            
 
-           /*window.location.replace("http://localhost/projetohtml/admin/users/users-update")*/
+         
         },
         error: function () {
 
         }
+    });*/
+
+   $(document).ready(function(){
+
+    $.ajax({
+        url: 'http://localhost/projetohtml/admin/users-list-all',
+        method: 'GET',
+        data: JSON,
+        success: function(data){
+            
+            $.each(JSON.parse(data), function(k, v){
+                id = v.iduser;
+                console.log(id);
+            });
+
+            //Segundo AJAX
+            $.ajax({
+                url: "http://localhost/projetohtml/admin/users-update/"+id+"/update",
+                method: 'GET',
+                data: JSON,
+                success: function ( response ) {
+                    console.log(response);
+                    console.log(id);
+                    id=null;
+                    $.each(JSON.parse(response), function(k, v){
+                        $("#desperson").attr("value",v.desperson);
+                        $("#deslogin").attr("value",v.deslogin);
+                        $("#nrphone").attr("value",v.nrphone);
+                        $("#desemail").attr("value",v.desemail);
+                        $("#inadmin").attr("value",v.inadmin);
+                    });
+                },
+                error: function (error) {
+                    console.log('Erro AJAX 2: ' + error);
+                }
+                //Fim do segundo AJAX
+            });
+        },
+        error: function(error){
+            console.log('Erro AJAX 1: ' + error);
+        }
     });
+
+});
 
  $('#form-edit-user').on('submit', function () {
     var dados = jQuery( this ).serialize();

@@ -307,9 +307,11 @@ $app->get('/admin/users-update/{id}',function ($request, $response, $id) {
 
 $app->get('/admin/users-update/{id}/update',function ($request, $response, $id) {
         
-       
+        $user = new User();
         
-        echo var_dump($id);
+        $result = $user->getUserByIdUpdateUser($id);
+        
+        return json_encode($id);
    
         exit;
     });
