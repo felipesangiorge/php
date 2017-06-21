@@ -690,12 +690,25 @@ $(document).ready(function(){
 
  $(document).ready(function(){
 
+    var id;
+   
+
+   $.getJSON('http://localhost/projetohtml/admin/users-list-all',function(data){
+             $.each(data, function(k, v){
+
+               id = v.iduser;
+               console.log(id);
+              
+                });
+          });
+
  $.ajax({
-        url: 'http://localhost/projetohtml/admin/users-update/'+$_POST[id_user]+'/update',
+        url: "http://localhost/projetohtml/admin/users-update/"+id+"/update",
         method: 'GET',
         data: JSON,
         success: function ( response ) {
           console.log(response);
+          console.log(id);
 
           $.each(JSON.parse(response), function(k, v){
 

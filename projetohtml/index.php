@@ -296,7 +296,9 @@ $app->get('/admin/users-update',function () {
 
 $app->get('/admin/users-update/{id}',function ($request, $response, $id) {
     
-        $_POST[$id];
+        $user = new User();
+        
+        $user->setIduser($id);
         
         require_once("view/adminlte/pages/users-update.php");
         
@@ -305,11 +307,9 @@ $app->get('/admin/users-update/{id}',function ($request, $response, $id) {
 
 $app->get('/admin/users-update/{id}/update',function ($request, $response, $id) {
         
-        $user = new User();
+       
         
-        $results = $user->getUserByIdUpdateUser($id);
-        
-        return json_encode($results);
+        echo var_dump($id);
    
         exit;
     });
