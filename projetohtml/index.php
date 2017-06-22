@@ -288,11 +288,6 @@ $app->get('/admin/users',function () {
         
 });
 
-$app->get('/admin/users-update',function () {
-   
-    return json_encode($_SESSION['edit-user']);
-        
-});
 
 $app->get('/admin/users-update/{id}',function ($request, $response, $id) {
     
@@ -300,18 +295,21 @@ $app->get('/admin/users-update/{id}',function ($request, $response, $id) {
         
         $user->setIduser($id);
         
+        $_SESSION['update-iduser']=$id;
+         
         require_once("view/adminlte/pages/users-update.php");
-        
+
         exit;
     });
 
-$app->get('/admin/users-update/{id}/update',function ($request, $response, $id) {
-        
-        $user = new User();
-        
-        $result = $user->getUserByIdUpdateUser($id);
-        
-        return json_encode($id);
+$app->get('/admin/users-update',function ($request, $response, $id){
+         $user = new User();    
+    
+         $result = $user->getUserByIdUpdateUser($_SESSION['update-iduser']);
+         
+         unset($_SESSION['update-iduser']);
+         
+         echo json_encode($result);
    
         exit;
     });

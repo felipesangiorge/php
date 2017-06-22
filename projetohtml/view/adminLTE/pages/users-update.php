@@ -680,7 +680,7 @@
                 });
           });*/
 
- /*$.ajax({
+/* $.ajax({
         url: "http://localhost/projetohtml/admin/users-list-all",
         method: 'GET',
         async: false,
@@ -703,10 +703,10 @@
         error: function () {
 
         }
-    });
+    });*/
 
  $.ajax({
-        url: "http://localhost/projetohtml/admin/users-update/"+id+"/update",
+        url: "http://localhost/projetohtml/admin/users-update",
         method: 'GET',
         data: JSON,
         success: function ( response ) {
@@ -731,12 +731,12 @@
         error: function () {
 
         }
-    });*/
+    });
 
-   $(document).ready(function(){
+  /* $(document).ready(function(){
 
     $.ajax({
-        url: 'http://localhost/projetohtml/admin/users-list-all',
+        url: 'http://localhost/projetohtml/admin/users-update/{id}',
         method: 'GET',
         data: JSON,
         success: function(data){
@@ -774,7 +774,7 @@
         }
     });
 
-});
+});*/
 
  $('#form-edit-user').on('submit', function () {
     var dados = jQuery( this ).serialize();

@@ -788,7 +788,8 @@ $(document).ready(function(){
 							   					"<td>"+'<input type="file" name="foto_principal" value='+v.foto_principal+'></input>'+"</td>"+
 							   					"<td>"+'<input type="text" name="visivel" value='+v.visivel+'></input>'+"</td>"+
 							   					"<td>"+'<input type="text" name="comprimento_centimetro" class="table-editaprod-number" value='+v.comprimento_centimetro+'></input>'+"</td>"+
-                          "<td>"+'<input type="button"  id="editarProdForm" value="Editar" name="editar"></input>'+"</td></tr>")
+                          '<td><a href="javascript:;" id="'+ v.id_prod +'" class="btn btn-primary btn-xs edit-user"><i class="fa fa-edit"></i> Editar</a></td>"'+
+                                    '<td><a href="javascript:;" id="'+ v.id_prod +'" class="btn btn-danger btn-xs delete-user"><i class="fa fa-trash"></i> Excluir</a></td>'+"</td></tr>")
 
  
    		});
@@ -803,20 +804,31 @@ $(document).ready(function(){
 
  $(function(){
 
-    $("#editarProdForm").on("click",function(){
+$('body').on('click', '.edit-user', function () {
 
-        alert("teste")
+   
 
-        
+      var id_prod = $(this).attr('id');
+
+       $.ajax({
+        url: 'editarprod/'+id_prod,
+        method: 'POST',
+        data: { id_prod: id_prod },
+        success: function ( response ) {
+           console.log(response);
+
+           window.location.replace("http://localhost/projetohtml/admin/editarprod/"+id_user)
+        },
+        error: function () {
+
+        }
     });
-
-     $("#sendFormEditarprod").click(function(){
-
-        alert("testeForm")
-    });
-
-
-  });
+       
+       window.location.reload();
+  
+  
+   
+});
 
 
 var request;
@@ -847,7 +859,7 @@ jQuery(document).ready(function(){
       return false;
     });
   });
-
+});
 
 
 </script>
