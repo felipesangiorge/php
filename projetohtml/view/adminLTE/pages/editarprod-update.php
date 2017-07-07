@@ -482,51 +482,98 @@
 
     <!-- Main content -->
 
- <form>
-
-
-
-    <div id="main-table-editaprod">
-              
-        <table id="tabela-produtos" class="table table-condensed table-hover table-striped text-center">   
-                    <thead>                          
-                          <tr>
-                                              <th data-column-id="id_prod">Id</th>
-                                              <th data-column-id="nome_prod_curto">Nome Curto</th>
-                                              <th data-column-id="nome_prod_longo">Nome Longo</th>
-                                              <th data-column-id="codigo_interno">Código Interno</th>
-                                              <th data-column-id="cate">Categoria</th>
-                                              <th data-column-id="preco">Preço</th>
-                                              <th data-column-id="peso">Peso</th>
-                                              <th data-column-id="largura_centimetro">Largura (cm)</th>
-                                              <th data-column-id="altura_centimetro">Altura (cm)</th>
-                                              <th data-column-id="quantidade_estoque">Quantidade Estoque</th>
-                                              <th data-column-id="preco_promorcional">Preço Promorcional</th>
-                                              <th data-column-id="foto_principal">Foto</th>
-                                              <th data-column-id="visivel">Visivel</th>
-                                              <th data-column-id="comprimento_centimetro">Comprimento (cm)</th>
-                                            <th>&nbsp;</th>'
-                            </tr>
-                        
-
-                  </thead>
-            			      
-              <tbody></tbody>
-              				 
-        </table>
-
-                  
-      </div>
-
-        <div class="form-group">
     
-        <input type="button" id="editarProdForm" class="form-control" value="Editar" name="editar">
+
+    <form id="sendFormCadastroprod"  method="post">
+
+      <div class="form-group" id="formidproduct">
+
+      <h4 id="idproducth4">Id Produto:</h4>
+    
+        </div>
+
+      <div class="form-group" id="form_nome_prod_curto">
+      <h4 id="">Nome Curto:</h4>
+        <input type="text" id="nome_prod_curto" class="form-control" placeholder="Nome Curto" name="nome_prod_curto">
        
       </div>
 
+       <div class="form-group" id="form_nome_prod_longo">
+      <h4 id="">Nome Longo:</h4>
+        <input type="text" id="nome_prod_longo" class="form-control" placeholder="Nome Longo" name="nome_prod_longo">
+       
+      </div>
+
+      <div class="form-group" id="form_codigo_interno">
+      <h4 id="">Codigo interno Minimo 6 digitos:</h4>
+        <input type="number" id="codigo_interno" min="1" step="any" class="form-control" placeholder="Codigo interno" name="codigo_interno">
         
+      </div>
 
+      <div class="form-group" id="form_id_cat">
+      <h4 id="">Id Categoria:</h4>
+        <input type="number" id="id_cat" min="1" step="any" class="form-control" placeholder="id categoria" name="id_cat">
+       
+      </div>
+      <div class="form-group" id="form_preco">
+      <h4 id="">Preço:</h4>
+        <input type="number" id="preco" min="1" step="any" class="form-control" placeholder="preço" name="preco">
+        
+      </div>
 
+      <div class="form-group" id="form_peso">
+      <h4 id="">Peso:</h4>
+        <input type="number" id="peso" min="1" step="any" class="form-control" placeholder="peso" name="peso">
+       
+      </div>
+      <div class="form-group" id="form_largura_centimetro">
+      <h4 id="">Largura Centimetros:</h4>
+        <input type="number" id="largura_centimetro" min="0.1" step="any" class="form-control" placeholder="Largura Centimetros" name="largura_centimetro">
+        
+      </div>
+
+      <div class="form-group" id="form_altura_centimetro">
+      <h4 id="">Altura Centimetros:</h4>
+        <input type="number" id="altura_centimetro" class="form-control" placeholder="Altura Centimetros" name="altura_centimetro"> 
+      </div>
+
+      <div class="form-group" id="form_quantidade_estoque">
+      <h4 id="">Quantidade Estoque:</h4>
+        <input type="number" id="quantidade_estoque" class="form-control" placeholder="Quantidade Estoque" name="quantidade_estoque"> 
+      </div>
+
+      <div class="form-group" id="form_preco_promorcional">
+      <h4 id="">Preço promorcional:</h4>
+        <input type="number" class="form-control" placeholder="Preço promorcional" name="preco_promorcional"> 
+      </div>
+
+      <div class="form-group">
+      <h4 id="">Foto Principal:</h4>
+        <input type="file" class="form-control" name="foto_principal"> 
+      </div>
+
+       <div class="form-group" >
+      <h4 id="">Visivel:</h4>
+        <input type="checkbox" value="1"  name="visivel" style="margin-left: 20px"> 
+      </div>
+
+      <div class="form-group" id="form_comprimento_centimetro">
+      <h4 id="">Comprimento centimetros:</h4>
+        <input type="number" class="form-control" placeholder="Comprimento Centimetro" name="comprimento_centimetro"> 
+      </div>
+
+   
+
+      <div class="row">
+        <div class="col-xs-8"> 
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Confirmar</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+    
   <!-- /.content-wrapper -->
  
 
@@ -731,31 +778,162 @@
 ?>
 
 <script>
- /*$(function(){
 
- var url='http://localhost/projetoecomerce/admin/cadastroprod-last-id'
+$("#idproduct").on("focusout",function() {
 
- var listid = $('#idproduct');
+  if( !$(this).val()) {
 
-$(document).ready(function(){
-	
-	$.ajax({
+         $('#formidproduct').addClass("has-warning");
+         $('#idproduct').attr("placeholder", "Campo vazio!");
 
-		url:url,
-		method:'GET',
-		type:"JSON"
+    }else {
+          $('#formidproduct').removeClass("has-warning");
+          $('#formidproduct').addClass("has-success");
+    }
 
-	}).done(function(idprod){
+});
+
+$("#nome_prod_curto").on("focusout",function() {
+
+  if( !$(this).val() || $(this).val().length < 3) {
+
+         $('#form_nome_prod_curto').addClass("has-warning");
+         $('#nome_prod_curto').attr("placeholder", "Campo vazio coloque o nome curto !");
+
+    }else {
+          $('#form_nome_prod_curto').removeClass("has-warning");
+          $('#form_nome_prod_curto').addClass("has-success");
+    }
+
+});
 
 
-		listid.html("<h1>"+idprod+"</h1>");
-	});
+$("#nome_prod_longo").on("focusout",function() {
 
-		return false;
- });
-		action="http://localhost/projetoecomerce/admin/cadastroprod"
+ if( !$(this).val() || $(this).val().length < 5) {
 
- });*/
+         $('#form_nome_prod_longo').addClass("has-warning");
+         $('#nome_prod_longo').attr("placeholder", "Campo vazio coloque o nome longo !");
+
+    }else {
+          $('#form_nome_prod_longo').removeClass("has-warning");
+          $('#form_nome_prod_longo').addClass("has-success");
+    }
+
+});
+
+
+$("#codigo_interno").on("focusout",function() {
+
+ if( !$(this).val() || $(this).val().length < 6) {
+
+         $('#form_codigo_interno').addClass("has-warning");
+         $('#codigo_interno').attr("placeholder", "Campo vazio coloque o código!");
+
+    }else {
+          $('#form_codigo_interno').removeClass("has-warning");
+          $('#form_codigo_interno').addClass("has-success");
+    }
+
+});
+
+$("#id_cat").on("focusout",function() {
+
+ if( !$(this).val()) {
+
+         $('#form_id_cat').addClass("has-warning");
+         $('#id_cat').attr("placeholder", "Campo vazio !");
+
+    }else {
+          $('#form_id_cat').removeClass("has-warning");
+          $('#form_id_cat').addClass("has-success");
+    }
+
+});
+
+$("#preco").on("focusout",function() {
+
+ if( !$(this).val()) {
+
+         $('#form_preco').addClass("has-warning");
+         $('#preco').attr("placeholder", "Campo vazio !");
+
+    }else {
+          $('#form_preco').removeClass("has-warning");
+          $('#form_preco').addClass("has-success");
+    }
+
+});
+
+$("#peso").on("focusout",function() {
+
+ if( !$(this).val()) {
+
+         $('#form_peso').addClass("has-warning");
+         $('#peso').attr("placeholder", "Campo vazio !");
+
+    }else {
+          $('#form_peso').removeClass("has-warning");
+          $('#form_peso').addClass("has-success");
+    }
+
+});
+
+$("#largura_centimetro").on("focusout",function() {
+
+ if( !$(this).val()) {
+
+         $('#form_largura_centimetro').addClass("has-warning");
+         $('#largura_centimetro').attr("placeholder", "Campo vazio !");
+
+    }else {
+          $('#form_largura_centimetro').removeClass("has-warning");
+          $('#form_largura_centimetro').addClass("has-success");
+    }
+
+});
+
+$("#altura_centimetro").on("focusout",function() {
+
+ if( !$(this).val()) {
+
+         $('#form_altura_centimetro').addClass("has-warning");
+         $('#altura_centimetro').attr("placeholder", "Campo vazio !");
+
+    }else {
+          $('#form_altura_centimetro').removeClass("has-warning");
+          $('#form_altura_centimetro').addClass("has-success");
+    }
+
+});
+
+$("#quantidade_estoque").on("focusout",function() {
+
+ if( !$(this).val()) {
+
+         $('#form_quantidade_estoque').addClass("has-warning");
+         $('#quantidade_estoque').attr("placeholder", "Campo vazio !");
+
+    }else {
+          $('#form_quantidade_estoque').removeClass("has-warning");
+          $('#form_quantidade_estoque').addClass("has-success");
+    }
+
+});
+
+$("#comprimento_centimetro").on("focusout",function() {
+
+ if( !$(this).val()) {
+
+         $('#form_comprimento_centimetro').addClass("has-warning");
+         $('#comprimento_centimetro').attr("placeholder", "Campo vazio !");
+
+    }else {
+          $('#form_comprimento_centimetro').removeClass("has-warning");
+          $('#form_comprimento_centimetro').addClass("has-success");
+    }
+
+});
 
  $(document).ready(function(){
 
@@ -765,84 +943,63 @@ $(document).ready(function(){
 
 
    			$('#idproduct').attr("placeholder","Ultimo Código Cadastrado: "+v.id_prod);
-   			$('#idproducth4').text("Código do Produto/Ultimo Código Cadastrado ("+v.id_prod+")");
+   			$('#idproducth4').text("Ultimo Código Cadastrado ("+v.id_prod+")");
    		});
     		
   	});
 
-  	$.getJSON('http://localhost/projetohtml/admin/editarprod-todos',function(data){
-   		$.each(data, function(k, v){
-
-  
-        $('#tabela-produtos tbody').append("<tr><td id='id_prod' name='id_prod'>"+v.id_prod+"</td>"+
-   												"<td id='nome_prod_curto'>"+'<input type="text" name="nome_prod_curto" value='+v.nome_prod_curto+'></input>'+"</td>"+
-							   					"<td id='nome_prod_longo'>"+'<input type="text" name="nome_prod_longo" value='+v.nome_prod_longo+'></input>'+"</td>"+
-							   					"<td>"+'<input type="number" name="codigo_interno" class="table-editaprod-number2" value='+v.codigo_interno+'></input>'+"</td>"+
-							   					"<td>"+'<input type="text" name="id_cat" class="table-editaprod-number" value='+v.id_cat+'></input>'+"</td>"+
-							   					"<td>"+'<input type="number" name="preco" class="table-editaprod-number2" value='+v.preco+'></input>'+"</td>"+
-							   					"<td>"+'<input type="number" name="peso" class="table-editaprod-number" value='+v.peso+'></input>'+"</td>"+
-							   					"<td>"+'<input type="number" name="largura_centimetro" class="table-editaprod-number" value='+v.largura_centimetro+'></input>'+"</td>"+
-							   					"<td>"+'<input type="number" name="altura_centimetro" class="table-editaprod-number" value='+v.altura_centimetro+'></input>'+"</td>"+
-							   					"<td>"+'<input type="number" name="quantidade_estoque" class="table-editaprod-number" value='+v.quantidade_estoque+'></input>'+"</td>"+
-							   					"<td>"+'<input type="number" name="preco_promorcional" class="table-editaprod-number2" value='+v.preco_promorcional+'></input>'+"</td>"+
-							   					"<td>"+'<input type="file" class="btn btn-primary btn-xs" name="foto_principal" value='+v.foto_principal+'></input>'+"</td>"+
-							   					"<td>"+'<input type="text" name="visivel" value='+v.visivel+'></input>'+"</td>"+
-							   					"<td>"+'<input type="text" name="comprimento_centimetro" class="table-editaprod-number" value='+v.comprimento_centimetro+'></input>'+"</td>"+
-                          '<td><a href="javascript:;" id="'+ v.id_prod +'" class="btn btn-primary btn-xs edit-user"><i class="fa fa-edit"></i> Editar</a></td>"'+
-                          '<td><a href="javascript:;" id="'+ v.id_prod +'" class="btn btn-danger btn-xs delete-user"><i class="fa fa-trash"></i> Excluir</a></td>'+"</tr>")
-
- 
-   		});
-
-       
-    		
-  	});
+    
 
    });
 
 
 
- $(function(){
-
-$('body').on('click', '.edit-user', function () {
-
-      var id_prod = $(this).attr('id');
-
-       $.ajax({
-        url: 'editarprod/'+id_prod,
-        method: 'POST',
-        data: { id_prod: id_prod },
-        success: function ( response ) {
-           console.log("retorno sucesso :"+response);
-
-          // window.location.replace("http://localhost/projetohtml/admin/editarprod/"+id_prod)
-        },
-        error: function (error) {
-          console.log(error);
-
-        }
-    });
-       
-       window.location.reload();
-  
-  
-   
-});
-
-
-var request;
-
 
 jQuery(document).ready(function(){
-    jQuery('#sendFormEditarprod').submit(function(){
+    jQuery('#sendFormCadastroprod').submit(function(){
+
+      if($("#form_nome_prod_curto").hasClass("has-warning") || 
+        $("#form_nome_prod_longo").hasClass("has-warning")  ||
+        $("#form_codigo_interno").hasClass("has-warning")  ||
+        $("#form_id_cat").hasClass("has-warning")  ||
+        $("#form_preco").hasClass("has-warning")  ||
+        $("#form_peso").hasClass("has-warning")   ||
+        $("#form_largura_centimetro").hasClass("has-warning")   ||
+        $("#form_altura_centimetro").hasClass("has-warning")   ||
+        $("#form_quantidade_estoque").hasClass("has-warning")  ||
+        $("#form_comprimento_centimetro").hasClass("has-warning")){
+
+          alert("Inconsistencia nos campos em laranja, favor verificar novamente.");
+
+      }else{
+         
       var dados = jQuery( this ).serialize();
 
                 jQuery.ajax({
                   type: "POST",
-                  url: "http://localhost/projetohtml/admin/editarprod",
+                  url: "http://localhost/projetohtml/admin/cadastroprod",
                   data: dados,
                   success: function( data ) {
+
                     console.log("dados enviados");
+
+                    console.log(data);
+  
+
+                      if(data == "error"){
+
+                       $('#form_nome_prod_curto').addClass("has-warning");
+                       $('#form_codigo_interno').addClass("has-warning");
+                        alert("Já existe um produto com mesmo nome ou codigo interno");
+                       
+
+                      }else{
+
+                        alert("Produto Cadastrado Com Sucesso!");
+                         window.location.reload();
+                      }
+
+                 
 
                   },
                   error: function (result) {
@@ -854,11 +1011,13 @@ jQuery(document).ready(function(){
 
       });
 
-      
+       }
       return false;
+       
     });
+
   });
-});
+
 
 
 </script>

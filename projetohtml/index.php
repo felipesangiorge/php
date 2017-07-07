@@ -360,21 +360,11 @@ $app->get('/admin/users/create',function () {
 
 $app->post("/admin/users/{id}",function ($request, $response,$id){
    
-        
-    $sqlAdm = new SqlAdm();
-    
+ 
     $user = new User();
     
     $results = $user->getUserByIdUpdateUser($id);
-    
-    $deslogin = $sqlAdm -> select("SELECT deslogin FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser like :iduser",array(
-        ":iduser"=>$id['id']
-    ));
-    $_SESSION['edit-user-deslogin'] = null;
-    $_SESSION['edit-user-deslogin'] = $deslogin;
-    $_SESSION['edit-user'] = null;
-    $_SESSION['edit-user'] = $results;
-    
+ 
     return $results;
     
     exit;
@@ -498,6 +488,34 @@ $app->get('/admin/editarprod',function () {
 	require_once("view/adminlte/pages/editarprod.php");
 	
 });
+
+    $app->get('/admin/products-update/{id}',function ($request, $response, $id) {
+        
+        $products = new Products();
+        
+        $products->setId_prod($id);
+        
+        $_SESSION['update-idproduct']=$id;
+        
+        require_once("view/adminlte/pages/editarprod-update.php");
+        
+        exit;
+    });
+
+$app->post('/admin/editarprod/{id}',function ($request,$response,$id) {
+        
+        //$sqlAdm = new SqlAdm();
+        
+        $products = new Products();
+        
+        $results = $products->getProductById($id);
+        
+        return json_encode($results);
+        
+        //require_once("view/adminlte/pages/editarprod-update.php");
+        
+});
+
 					
 $app->get('/admin/cadastroprod-last-id', function(){
 							

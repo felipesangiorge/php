@@ -364,6 +364,19 @@ class Products{
 		
 	}
 	
+	public static function getProductById($id){
+	    
+	    $sqlAdm = new SqlAdm();
+	    
+	    
+	    $results = $sqlAdm -> select("SELECT * FROM tb_produtos WHERE id_prod like :id_prod",array(
+	        ":id_prod"=>$id['id']
+	    ));
+	    
+	    return ($results);
+	    
+	}
+	
 	
 }
 
